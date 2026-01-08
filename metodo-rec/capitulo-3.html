@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método REC - Necesidades en el Lugar Correcto: La Alimentación | Miguel Entrenador</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #3498DB;
+            --secondary-color: #2ECC71;
+            --dark-color: #2C3E50;
+            --light-color: #ECF0F1;
+            --accent-color: #9B59B6;
+            --text-color: #34495E;
+            --success-color: #27AE60;
+            --warning-color: #E67E22;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+        }
+
+        header .author {
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            opacity: 0.9;
+        }
+
+        .chapter-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Sections */
+        section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        section h2 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        section h3 {
+            color: var(--dark-color);
+            font-size: 1.6rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        section h4 {
+            color: var(--text-color);
+            font-size: 1.3rem;
+            margin: 1.5rem 0 0.8rem 0;
+        }
+
+        section p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        section ul, section ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        section li {
+            margin: 0.5rem 0;
+            line-height: 1.6;
+        }
+
+        /* Intro Box */
+        .intro-box {
+            background: linear-gradient(135deg, #E3F2FD 0%, #F1F8E9 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-color);
+            margin: 2rem 0;
+        }
+
+        .intro-box p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Key Insight Box */
+        .key-insight {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--warning-color);
+            margin: 2rem 0;
+        }
+
+        .key-insight h4 {
+            color: var(--warning-color);
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        /* Problem Box */
+        .problem-box {
+            background: #FFEBEE;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid #E74C3C;
+            margin: 1.5rem 0;
+        }
+
+        .problem-box h4 {
+            color: #E74C3C;
+            margin-top: 0;
+        }
+
+        /* Solution Box */
+        .solution-box {
+            background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--success-color);
+            margin: 2rem 0;
+        }
+
+        .solution-box h4 {
+            color: var(--success-color);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Schedule Box */
+        .schedule-item {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 3px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .schedule-item strong {
+            color: var(--primary-color);
+            min-width: 150px;
+        }
+
+        /* Highlight Box */
+        .highlight {
+            background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--success-color);
+            margin: 1.5rem 0;
+            font-weight: 500;
+        }
+
+        /* Warning Box */
+        .warning {
+            background: #FFF3E0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--warning-color);
+            margin: 1.5rem 0;
+        }
+
+        .warning strong {
+            color: var(--warning-color);
+        }
+
+        /* Info Box */
+        .info-box {
+            background: #E3F2FD;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary-color);
+            margin: 1.5rem 0;
+        }
+
+        /* Process Flow */
+        .process-flow {
+            background: #F8F9FA;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .process-step {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 4px solid var(--primary-color);
+            position: relative;
+        }
+
+        .process-step::before {
+            content: "→";
+            position: absolute;
+            left: -2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .process-step:first-child::before {
+            content: "1";
+            background: var(--primary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .process-step strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .timeline h4 {
+            color: var(--success-color);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid var(--success-color);
+        }
+
+        .timeline-item .time {
+            color: var(--success-color);
+            font-weight: bold;
+            display: inline-block;
+            min-width: 100px;
+        }
+
+        /* Chain Box */
+        .chain-box {
+            background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .chain-item {
+            display: inline-block;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            margin: 0.5rem;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .chain-arrow {
+            display: inline-block;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+        }
+
+        /* Divider */
+        .divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            margin: 3rem 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        footer h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        .social {
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+        }
+
+        .social a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .social a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 1.5rem 1rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+                margin-bottom: 0.3rem;
+            }
+
+            header .subtitle {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            header .author {
+                font-size: 0.9rem;
+                margin-top: 0.5rem;
+            }
+
+            .chapter-badge {
+                font-size: 0.9rem;
+                padding: 0.4rem 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .schedule-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .chain-box {
+                padding: 1.5rem 1rem;
+            }
+
+            .chain-item {
+                display: block;
+                margin: 0.5rem 0;
+            }
+
+            .chain-arrow {
+                display: block;
+                transform: rotate(90deg);
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🍽️ Método REC 🍽️</h1>
+        <div class="subtitle">Necesidades en el Lugar Correcto: La Alimentación</div>
+        <div class="chapter-badge">📖 Capítulo 3</div>
+        <div class="author">@miguel.entrenadorcanino</div>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>El secreto que nadie te cuenta</h2>
+            
+            <div class="key-insight">
+                <h4>💡 Principio Fundamental</h4>
+                <p>Para enseñarle a tu perro dónde hacer sus necesidades, primero necesitas <strong>saber cuándo las va a hacer</strong>.</p>
+            </div>
+
+            <p>Parece obvio cuando lo dices así, pero piénsalo un momento. ¿Cómo vas a recompensar a tu perro por hacer pipí en el lugar correcto si nunca estás presente cuando sucede? ¿Cómo vas a capturar ese comportamiento si no tienes idea de cuándo va a ocurrir?</p>
+
+            <div class="highlight">
+                <p><strong>La respuesta está en algo que parece no tener relación: la alimentación.</strong></p>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2>Por qué la recompensa lo es todo</h2>
+
+            <p>Tu perro solo va a repetir un comportamiento si ve beneficio en hacerlo. Así de simple funciona su mente.</p>
+
+            <p>Si hace pipí en el lugar correcto y no pasa nada, para él es lo mismo que hacerlo en cualquier otro lugar. No hay diferencia. No hay motivo para elegir un sitio sobre otro.</p>
+
+            <div class="info-box">
+                <p><strong>🎉 La clave:</strong> Si cada vez que hace en el lugar correcto recibe una fiesta de celebración —caricias, premios, palabras de alegría, libertad si estaba en un espacio limitado— su cerebro empieza a conectar los puntos.</p>
+                <p style="margin-bottom: 0;"><em>"Cuando hago aquí, pasan cosas buenas. Voy a seguir haciendo aquí."</em></p>
+            </div>
+
+            <p>El problema es que para dar esa recompensa, necesitas estar presente en el momento exacto. Y para estar presente, necesitas poder predecir cuándo va a suceder.</p>
+
+            <p><strong>Ahí es donde entra la alimentación regrada.</strong></p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2>El problema de la comida siempre disponible</h2>
+
+            <div class="problem-box">
+                <h4>❌ El error común</h4>
+                <p>Muchos dueños dejan el plato de comida lleno todo el día. El perro come cuando quiere, la cantidad que quiere, a la hora que quiere.</p>
+            </div>
+
+            <p>Parece conveniente. Parece incluso generoso. Pero está saboteando completamente tu proceso de educación sanitaria.</p>
+
+            <div class="warning">
+                <p><strong>⚠️ El problema:</strong> Si no sabes cuándo come tu perro, no tienes forma de predecir cuándo va a necesitar hacer sus necesidades. Puede ser en cualquier momento. Y tú no puedes estar vigilando las 24 horas del día esperando el momento mágico.</p>
+            </div>
+
+            <p>El resultado es que tu perro hace donde sea, cuando sea, sin que tú estés presente para corregir o recompensar. Y el ciclo de frustración continúa.</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2>Cómo regular la alimentación</h2>
+
+            <p>El cambio es simple pero poderoso. En lugar de comida libre, establece horarios fijos.</p>
+
+            <div class="solution-box">
+                <h4>✅ La solución: Alimentación Regrada</h4>
+
+                <div class="schedule-item">
+                    <strong>📅 Frecuencia:</strong>
+                    <span>Dos a tres veces al día, dependiendo de la edad y necesidades de tu perro.</span>
+                </div>
+
+                <div class="schedule-item">
+                    <strong>⏰ Horarios:</strong>
+                    <span>Siempre los mismos. Si decides que come a las 8:00, a las 14:00 y a las 20:00, mantén esos horarios todos los días.</span>
+                </div>
+
+                <div class="schedule-item">
+                    <strong>⏱️ Tiempo límite:</strong>
+                    <span>Coloca el plato y dale un máximo de 15 minutos para comer. Si no termina, retiras el plato. Aprenderá rápido que cuando la comida aparece, es momento de comer.</span>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <p><strong>✨ El efecto mágico:</strong> Este sistema regula el metabolismo de tu perro. Su cuerpo empieza a funcionar con un ritmo predecible. Come a las mismas horas, digiere de forma regular, y hace sus necesidades en momentos que puedes anticipar.</p>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2>La conexión directa con las necesidades</h2>
+
+            <p>Aquí viene la parte práctica que necesitas entender.</p>
+
+            <div class="info-box">
+                <p><strong>🔍 Patrón Natural:</strong> Los perros, especialmente los cachorros, tienden a hacer sus necesidades <strong>poco después de comer</strong>. En cachorros es casi una certeza. En adultos es un poco más variable, pero el patrón sigue existiendo.</p>
+            </div>
+
+            <div class="timeline">
+                <h4>⏰ Ejemplo de Timeline Predictivo:</h4>
+
+                <div class="timeline-item">
+                    <span class="time">8:00 AM</span> → Alimentación
+                </div>
+
+                <div class="timeline-item">
+                    <span class="time">8:15-8:30 AM</span> → Ventana de oportunidad para necesidades
+                </div>
+
+                <div class="timeline-item">
+                    <span class="time">Tu presencia</span> → Puedes estar preparado, llevarlo al lugar correcto, capturar el comportamiento
+                </div>
+            </div>
+
+            <p>Cuando alimentas a tu perro a las 8:00 de la mañana, sabes que probablemente entre 15 y 30 minutos después va a necesitar hacer pipí o popó. Eso significa que puedes estar preparado. Puedes llevarlo al lugar correcto. Puedes estar presente para capturar el comportamiento.</p>
+
+            <p>Lo mismo aplica para las otras comidas del día. Cada alimentación te da una ventana de oportunidad predecible para reforzar el comportamiento correcto.</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2>El momento de la captura</h2>
+
+            <div class="warning">
+                <p><strong>⚠️ Crucial:</strong> Cuando tu perro hace sus necesidades en el lugar correcto, tienes que actuar inmediatamente. Recuerda: el tiempo de captura es de 2 a 3 segundos máximo.</p>
+            </div>
+
+            <div class="process-flow">
+                <div class="process-step">
+                    <strong>🎉 Celebra inmediatamente</strong>
+                    <p>Haz fiesta. Usa tu voz alegre, dale caricias, muéstrale que estás feliz.</p>
+                </div>
+
+                <div class="process-step">
+                    <strong>🍖 Dale un premio</strong>
+                    <p>Si lo tienes a mano, refuerza con comida. Es su lenguaje más básico.</p>
+                </div>
+
+                <div class="process-step">
+                    <strong>🚪 Ofrece libertad</strong>
+                    <p>Si estaba en un espacio limitado (como un corral o una habitación), dale libertad como parte de la recompensa.</p>
+                </div>
+
+                <div class="process-step">
+                    <strong>🔁 Sé consistente</strong>
+                    <p>Esta celebración consistente, repetida cada vez que hace en el lugar correcto, es lo que va a grabar el comportamiento en su mente.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2>Conclusión</h2>
+
+            <p>La alimentación regrada no es solo una cuestión de nutrición o disciplina. Es una herramienta estratégica para la educación sanitaria de tu perro.</p>
+
+            <div class="chain-box">
+                <h4 style="color: var(--accent-color); margin-bottom: 1.5rem;">La Cadena Lógica del Éxito:</h4>
+                
+                <div class="chain-item">Controlas cuándo come</div>
+                <div class="chain-arrow">↓</div>
+                <div class="chain-item">Puedes predecir necesidades</div>
+                <div class="chain-arrow">↓</div>
+                <div class="chain-item">Puedes estar presente</div>
+                <div class="chain-arrow">↓</div>
+                <div class="chain-item">Puedes recompensar</div>
+                <div class="chain-arrow">↓</div>
+                <div class="chain-item">El comportamiento se instala</div>
+            </div>
+
+            <p>Es una cadena lógica que empieza con algo tan simple como establecer horarios de comida.</p>
+
+            <div class="highlight">
+                <p><strong>💪 Acción inmediata:</strong> Si actualmente tienes la comida en libre acceso, haz el cambio hoy. En pocos días vas a notar la diferencia en la previsibilidad de tu perro. Y esa previsibilidad es la base de todo lo que viene después.</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <h3>Sobre el Autor</h3>
+        
+        <p><strong>Miguel Entrenador</strong></p>
+        <p>Entrenador canino especializado en comportamiento y bienestar de perros.</p>
+        
+        <div class="social">
+            <p>Sígueme en <a href="https://instagram.com/miguel.entrenadorcanino" target="_blank">@miguel.entrenadorcanino</a></p>
+        </div>
+
+        <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">© Todos los derechos reservados - Miguel Entrenador</p>
+    </footer>
+
+    <div class="back-to-top" id="backToTop">↑</div>
+
+    <script>
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
