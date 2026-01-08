@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método REC - Cuando Tu Perro Hace Donde No Debe | Miguel Entrenador</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #3498DB;
+            --secondary-color: #2ECC71;
+            --dark-color: #2C3E50;
+            --light-color: #ECF0F1;
+            --accent-color: #9B59B6;
+            --text-color: #34495E;
+            --success-color: #27AE60;
+            --warning-color: #E67E22;
+            --danger-color: #E74C3C;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #E67E22 0%, #F39C12 100%);
+            color: white;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+        }
+
+        header .author {
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            opacity: 0.9;
+        }
+
+        .chapter-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Sections */
+        section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        section h2 {
+            color: var(--warning-color);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        section h3 {
+            color: var(--dark-color);
+            font-size: 1.6rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        section p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* Principle Box */
+        .principle-box {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 4px solid var(--warning-color);
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .principle-box h3 {
+            color: var(--warning-color);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .principle-box .rule {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        /* Two Column Box */
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .column-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .column-item.block {
+            border-top: 5px solid var(--danger-color);
+        }
+
+        .column-item.facilitate {
+            border-top: 5px solid var(--success-color);
+        }
+
+        .column-item h4 {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        /* Strategies Grid */
+        .strategies-grid {
+            display: grid;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .strategy-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--warning-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .strategy-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 20px rgba(230, 126, 34, 0.2);
+        }
+
+        .strategy-number {
+            display: inline-block;
+            background: var(--warning-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .strategy-card h4 {
+            color: var(--warning-color);
+            margin: 0 0 1rem 0;
+            font-size: 1.4rem;
+        }
+
+        /* Cases Section */
+        .cases-grid {
+            display: grid;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .case-card {
+            background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .case-card h4 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .case-card .case-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .solution-list {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .solution-list strong {
+            color: var(--success-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: #E3F2FD;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary-color);
+            margin: 1.5rem 0;
+        }
+
+        /* Highlight Box */
+        .highlight {
+            background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--success-color);
+            margin: 1.5rem 0;
+            font-weight: 500;
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: linear-gradient(135deg, #FFEBEE 0%, #FFCDD2 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--danger-color);
+            margin: 2rem 0;
+        }
+
+        .warning-box h3 {
+            color: var(--danger-color);
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        /* Deeper Problem Box */
+        .deeper-problem {
+            background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 3px solid var(--accent-color);
+            margin: 3rem 0;
+        }
+
+        .deeper-problem h3 {
+            color: var(--accent-color);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .deeper-problem .cta {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .deeper-problem .cta a {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .deeper-problem .cta a:hover {
+            background: #7B1FA2;
+            transform: translateY(-2px);
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #FFF9E6 0%, #FFF3E0 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 3px solid var(--warning-color);
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .summary-box h3 {
+            color: var(--warning-color);
+            margin-top: 0;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .summary-formula {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin: 2rem 0;
+            line-height: 1.8;
+        }
+
+        .summary-formula span {
+            color: var(--warning-color);
+        }
+
+        /* Divider */
+        .divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--warning-color), transparent);
+            margin: 3rem 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        footer h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        .social {
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+        }
+
+        .social a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .social a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--warning-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #F39C12;
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 1.5rem 1rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+                margin-bottom: 0.3rem;
+            }
+
+            header .subtitle {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            header .author {
+                font-size: 0.9rem;
+                margin-top: 0.5rem;
+            }
+
+            .chapter-badge {
+                font-size: 0.9rem;
+                padding: 0.4rem 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .principle-box .rule {
+                font-size: 1.1rem;
+            }
+
+            .summary-formula {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🚫 Método REC 🚫</h1>
+        <div class="subtitle">Cuando Tu Perro Hace Donde No Debe</div>
+        <div class="chapter-badge">📖 Capítulo 7</div>
+        <div class="author">@miguel.entrenadorcanino</div>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>El principio fundamental</h2>
+            
+            <div class="principle-box">
+                <h3>📌 Regla de Oro</h3>
+                <p class="rule">Si quieres que tu perro haga sus necesidades en el lugar correcto, necesitas hacer dos cosas al mismo tiempo:</p>
+                <div class="two-column" style="margin-top: 2rem;">
+                    <div class="column-item block">
+                        <div style="font-size: 3rem;">🚫</div>
+                        <h4>Dificultar</h4>
+                        <p>Los lugares equivocados</p>
+                    </div>
+                    <div class="column-item facilitate">
+                        <div style="font-size: 3rem;">✅</div>
+                        <h4>Facilitar</h4>
+                        <p>El lugar correcto</p>
+                    </div>
+                </div>
+            </div>
+
+            <p>Así de simple. No hay secreto ni magia. Es pura lógica aplicada de forma consistente.</p>
+
+            <div class="highlight">
+                <p><strong>Las necesidades son un hábito.</strong> Tu perro va a repetir lo que le resulte más fácil y cómodo. Tu trabajo es diseñar el ambiente para que lo más fácil y cómodo sea exactamente lo que tú quieres que haga.</p>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2>Estrategias para bloquear los lugares equivocados</h2>
+
+            <p>Aquí es donde la creatividad y el manejo del ambiente entran en juego. Tienes varias herramientas a tu disposición y puedes combinarlas según tu situación específica.</p>
+
+            <div class="strategies-grid">
+                <div class="strategy-card">
+                    <span class="strategy-number">1</span>
+                    <h4>🍖 Alimentación estratégica</h4>
+                    <p>Los perros tienen una regla instintiva muy clara: <strong>no hacen sus necesidades donde comen</strong>.</p>
+                    <p>Puedes usar esto a tu favor esparciendo un poco de su comida en los lugares donde no quieres que haga. No necesita ser mucha cantidad, solo lo suficiente para que él asocie ese espacio con alimentación.</p>
+                </div>
+
+                <div class="strategy-card">
+                    <span class="strategy-number">2</span>
+                    <h4>💧 Plato de agua</h4>
+                    <p>Coloca su plato de agua en esas zonas problemáticas. Funciona con el mismo principio.</p>
+                    <p>Si él asocia ese lugar con beber agua, no va a querer hacer sus necesidades ahí.</p>
+                </div>
+
+                <div class="strategy-card">
+                    <span class="strategy-number">3</span>
+                    <h4>🛏️ Objetos personales</h4>
+                    <p>Coloca su cama, su casa, su caja de transporte en los lugares donde suele hacer mal.</p>
+                    <p><strong>Los perros no ensucian donde duermen o descansan.</strong> Sus objetos personales marcan ese territorio como "zona de descanso", no como "zona de baño".</p>
+                </div>
+
+                <div class="strategy-card">
+                    <span class="strategy-number">4</span>
+                    <h4>🧴 Repelente</h4>
+                    <p>El repelente que mencionamos en la lección anterior. Aplícalo en las áreas problemáticas para que el olor lo disuada de acercarse.</p>
+                </div>
+
+                <div class="strategy-card">
+                    <span class="strategy-number">5</span>
+                    <h4>🚧 Bloqueo físico</h4>
+                    <p>Quizás la más efectiva de todas: <strong>simplemente bloquear el acceso físico</strong>.</p>
+                    <p>Usa rejas, puertas, barreras. Si tu perro no puede llegar al lugar equivocado, no puede hacer sus necesidades ahí.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2>Casos específicos comunes</h2>
+
+            <p>Vamos a hablar de situaciones que veo constantemente y cómo resolverlas.</p>
+
+            <div class="cases-grid">
+                <div class="case-card">
+                    <div class="case-icon">🧹</div>
+                    <h4>Problema: Hace en el tapete de la sala</h4>
+                    
+                    <div class="solution-list">
+                        <strong>Opción 1:</strong>
+                        <p>Remover el tapete temporalmente mientras consolida el comportamiento correcto. Después de unas semanas, cuando ya esté haciendo consistentemente en el lugar que quieres, puedes volver a poner el tapete, pero aplicando repelente los primeros 10 días.</p>
+                    </div>
+
+                    <div class="solution-list">
+                        <strong>Opción 2:</strong>
+                        <p>Mantener el tapete pero aplicar repelente constantemente y esparcir un poco de comida sobre él.</p>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-icon">🛋️</div>
+                    <h4>Problema: Sube al sofá para hacer sus necesidades</h4>
+                    
+                    <div class="solution-list">
+                        <strong>Solución:</strong>
+                        <p><strong>Cuando estás en casa:</strong> No permitas que suba más al sofá.</p>
+                        <p><strong>Cuando sales de casa:</strong> Obstruye el sofá físicamente. Puedes poner sillas encima, cajas, lo que sea que impida que él suba.</p>
+                        <p><strong>Además:</strong> Aplica repelente en el sofá.</p>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-icon">🛏️</div>
+                    <h4>Problema: Hace en la cama</h4>
+                    
+                    <div class="solution-list">
+                        <strong>Solución:</strong>
+                        <p>Aplica la misma estrategia del sofá:</p>
+                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                            <li>Bloquea el acceso al cuarto cuando no estás</li>
+                            <li>Bloquea el acceso a la cama específicamente</li>
+                            <li>No le permitas subir cuando estás presente</li>
+                            <li>Crea barreras físicas cuando te vas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <p><strong>🔑 La clave en todos estos casos:</strong> La combinación de estrategias. No uses solo una, usa varias al mismo tiempo.</p>
+                <p style="margin-top: 1rem;"><strong>Repelente + bloqueo físico + objetos personales + comida esparcida.</strong></p>
+                <p style="margin-top: 1rem;">Entre más difícil hagas el acceso al lugar equivocado, más rápido tu perro va a buscar el lugar correcto.</p>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <div class="deeper-problem">
+            <h3>⚠️ Cuando el problema es más profundo</h3>
+
+            <p>Necesito ser honesto contigo sobre algo importante.</p>
+
+            <div class="warning-box" style="margin-top: 2rem;">
+                <p>Si aplicaste todo lo que te enseñé y tu perro <strong>sigue haciendo mucho en lugares equivocados</strong>, especialmente cuando no estás en casa, el problema probablemente no son las necesidades en sí. <strong>Es un problema de comportamiento más profundo.</strong></p>
+            </div>
+
+            <p>Puede ser ansiedad por separación. Puede ser falta de estructura en la rutina. Puede ser un problema de comunicación entre tú y tu perro. Cualquiera que sea, requiere un trabajo más especializado.</p>
+
+            <div class="info-box">
+                <p><strong>💡 Soluciones disponibles:</strong></p>
+                <p>En estos casos, lo indicado es profundizar con una <strong>consultoría personalizada</strong> donde pueda entender exactamente tu situación, identificar qué estás haciendo mal sin darte cuenta, y crear un plan específico para tu caso.</p>
+                <p style="margin-top: 1rem;">También puedes acceder al curso <strong>Mi Perro Equilibrado</strong>, donde cubro todos estos temas de comportamiento en profundidad y puedes hacer preguntas debajo de cada lección.</p>
+            </div>
+
+            <div class="cta">
+                <a href="#">📋 Consultoría Personalizada</a>
+                <a href="#">🎓 Mi Perro Equilibrado</a>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="summary-box">
+            <h3>📝 Resumen del manejo</h3>
+            
+            <p>Todo lo que te enseño se resume en esto:</p>
+            
+            <div class="summary-formula">
+                <span>Dificulta</span> lo incorrecto<br>
+                + <br>
+                <span>Facilita</span> lo correcto<br>
+                + <br>
+                <span>Sé consistente</span>
+            </div>
+
+            <div style="text-align: left; margin-top: 2rem; background: white; padding: 2rem; border-radius: 10px;">
+                <p><strong>Donde NO quieres que haga:</strong></p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Coloca comida</li>
+                    <li>Coloca agua</li>
+                    <li>Coloca sus objetos</li>
+                    <li>Aplica repelente</li>
+                    <li>Bloquea el acceso</li>
+                </ul>
+
+                <p style="margin-top: 1.5rem;"><strong>Donde SÍ quieres que haga:</strong></p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Mantén el espacio limpio</li>
+                    <li>Mantén el espacio accesible</li>
+                    <li>Premia cada vez que lo haga bien</li>
+                </ul>
+            </div>
+
+            <p style="font-size: 1.2rem; font-weight: 600; margin-top: 2rem;">Es un proceso simple, pero requiere dedicación y seguir las instrucciones al pie de la letra. Si lo haces, los resultados llegan. Si improvisas o te saltas pasos, los resultados se complican.</p>
+
+            <p style="font-size: 1.3rem; font-weight: 700; margin-top: 2rem; color: var(--warning-color);">Confía en el método y aplícalo completo.</p>
+        </div>
+    </div>
+
+    <footer>
+        <h3>Sobre el Autor</h3>
+        
+        <p><strong>Miguel Entrenador</strong></p>
+        <p>Entrenador canino especializado en comportamiento y bienestar de perros.</p>
+        
+        <div class="social">
+            <p>Sígueme en <a href="https://instagram.com/miguel.entrenadorcanino" target="_blank">@miguel.entrenadorcanino</a></p>
+        </div>
+
+        <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">© Todos los derechos reservados - Miguel Entrenador</p>
+    </footer>
+
+    <div class="back-to-top" id="backToTop">↑</div>
+
+    <script>
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
