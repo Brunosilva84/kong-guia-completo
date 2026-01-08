@@ -33,7 +33,7 @@
         header {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: white;
-            padding: 3rem 2rem;
+            padding: 2rem 1.5rem;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
@@ -59,7 +59,7 @@
         .quote {
             font-style: italic;
             font-size: 1.2rem;
-            margin: 2rem auto;
+            margin: 1.5rem auto;
             max-width: 600px;
             padding: 1rem;
             background: rgba(255,255,255,0.1);
@@ -399,12 +399,29 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            header {
+                padding: 1.5rem 1rem;
+            }
+
             header h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
+                margin-bottom: 0.3rem;
             }
 
             header .subtitle {
-                font-size: 1.2rem;
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            header .author {
+                font-size: 0.9rem;
+                margin-top: 0.5rem;
+            }
+
+            .quote {
+                font-size: 0.95rem;
+                margin: 1rem auto;
+                padding: 0.8rem;
             }
 
             nav ul {
