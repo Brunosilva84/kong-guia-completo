@@ -399,42 +399,9 @@
             }
         }
 
-        /* Navigation */
-        .chapter-nav {
-            display: flex;
-            justify-content: space-between;
-            gap: 1rem;
-            margin: 3rem 0;
-        }
-
-        .nav-button {
-            flex: 1;
-            padding: 1.5rem;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 15px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(52,152,219,0.3);
-        }
-
-        .nav-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(52,152,219,0.4);
-        }
-
         /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
-        }
-
-        @media (max-width: 768px) {
-            .chapter-nav {
-                flex-direction: column;
-            }
         }
     </style>
 </head>
@@ -589,11 +556,6 @@
                 En el próximo capítulo, vamos a poner todo esto en práctica.
             </p>
         </section>
-
-        <div class="chapter-nav">
-            <a href="/" class="nav-button prev">← Inicio</a>
-            <a href="capitulo-2.html" class="nav-button next">Capítulo 2: La Naturaleza de los Perros →</a>
-        </div>
     </div>
 
     <footer>
