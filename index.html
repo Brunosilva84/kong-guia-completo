@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KONG - La Guía Completa | Miguel Entrenador</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #FF6B35;
+            --secondary-color: #F7931E;
+            --dark-color: #2C3E50;
+            --light-color: #ECF0F1;
+            --accent-color: #E74C3C;
+            --text-color: #34495E;
+            --success-color: #27AE60;
+            --warning-color: #E67E22;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+        }
+
+        header .author {
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            opacity: 0.9;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.2rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            border-left: 4px solid white;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: var(--dark-color);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 0 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.7rem 1.2rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Sections */
+        section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        section h2 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        section h3 {
+            color: var(--dark-color);
+            font-size: 1.6rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        section h4 {
+            color: var(--text-color);
+            font-size: 1.3rem;
+            margin: 1.5rem 0 0.8rem 0;
+        }
+
+        section p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* Benefits Box */
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, #fff5f0 0%, #ffe8dc 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255,107,53,0.2);
+        }
+
+        .benefit-card h4 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        th {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover {
+            background: #f9f9f9;
+        }
+
+        /* Levels */
+        .level {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .level h4 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+            line-height: 1.6;
+        }
+
+        /* Ingredients Lists */
+        .ingredients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .ingredient-section {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .ingredient-section h4 {
+            color: var(--success-color);
+            margin-top: 0;
+            font-size: 1.4rem;
+        }
+
+        .ingredient-section.avoid h4 {
+            color: var(--accent-color);
+        }
+
+        .ingredient-section ul {
+            margin-left: 1.5rem;
+        }
+
+        /* Recipe Cards */
+        .recipes {
+            display: grid;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .recipe-card {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .recipe-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .recipe-card h4 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+
+        .recipe-card .base {
+            background: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        .recipe-card .base strong {
+            color: var(--primary-color);
+        }
+
+        /* FAQ */
+        .faq-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .faq-item h4 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        /* Alert Boxes */
+        .alert {
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+            border-left: 5px solid;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            border-color: #0c5460;
+            color: #0c5460;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            border-color: #856404;
+            color: #856404;
+        }
+
+        .alert-danger {
+            background: #f8d7da;
+            border-color: #721c24;
+            color: #721c24;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        footer h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        .social {
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+        }
+
+        .social a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .social a:hover {
+            color: var(--primary-color);
+        }
+
+        .courses {
+            margin: 2rem 0;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .courses h4 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .courses ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .courses li {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .courses li:before {
+            content: "🐕";
+            position: absolute;
+            left: 0;
+        }
+
+        /* Copyright */
+        .copyright {
+            background: rgba(0,0,0,0.2);
+            padding: 1rem;
+            margin-top: 2rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header .subtitle {
+                font-size: 1.2rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav a {
+                display: block;
+                width: 90%;
+                text-align: center;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .benefits {
+                grid-template-columns: 1fr;
+            }
+
+            .ingredients-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🦴 KONG 🦴</h1>
+        <div class="subtitle">La Guía Completa</div>
+        <div class="author">@miguel.entrenadorcanino</div>
+        <div class="quote">
+            "Tu misión es cuidar bien a tu perro.<br>
+            Mi misión es ayudarte a lograrlo."<br>
+            – Miguel Entrenador
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#sobre">Sobre el Kong</a></li>
+            <li><a href="#tipos">Tipos</a></li>
+            <li><a href="#uso">Cómo Usar</a></li>
+            <li><a href="#ingredientes">Ingredientes</a></li>
+            <li><a href="#recetas">Recetas</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#comprar">Comprar</a></li>
+            <li><a href="#autor">Autor</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="alert alert-info">
+            <strong>Nota:</strong> Usamos la palabra Kong porque es el primer y más famoso juguete rellenable, así como decimos "curita" para las venditas adhesivas. Todo el contenido de este e-book también aplica a los juguetes rellenables similares al Kong.
+        </div>
+
+        <section id="sobre">
+            <h2>Capítulo 1 – Sobre el Kong</h2>
+            
+            <h3>Qué es y para qué sirve el Kong</h3>
+            <p>El Kong es un juguete de goma, hueco por dentro, hecho para ser rellenado con comida. Puede parecer simple, pero es una de las herramientas más efectivas para estimular mentalmente a tu perro, aliviar el aburrimiento y ayudar en el comportamiento del día a día.</p>
+            
+            <p>Fue creado en 1976 por un estadounidense llamado Joe Markham, quien notó que su perro prefería masticar una pieza de suspensión de auto en lugar de los juguetes comunes. La goma resistente y el formato irregular inspiraron la creación del Kong, que hoy es usado en todo el mundo por entrenadores, veterinarios y dueños de perros.</p>
+            
+            <p>El diferencial del Kong está en el uso. Cuando se rellena de la forma correcta, se transforma en un verdadero rompecabezas alimenticio, promoviendo bienestar y gastando energía mental.</p>
+
+            <h3>Principales beneficios</h3>
+            <p>El Kong no es solo un juguete. Es una herramienta de prevención y apoyo en diversos comportamientos caninos.</p>
+
+            <div class="benefits">
+                <div class="benefit-card">
+                    <h4>🏠 Evita comportamientos destructivos</h4>
+                    <p>El perro que está aburrido busca algo que hacer. El Kong ocupa la boca y la mente, redirigiendo el comportamiento hacia algo positivo.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h4>🧠 Estímulo mental real</h4>
+                    <p>Descubrir cómo sacar la comida del Kong requiere concentración y esfuerzo. Este tipo de desafío activa el cerebro del perro y lo cansa de forma saludable.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h4>😌 Alivia ansiedad y estrés</h4>
+                    <p>Masticar alivia la tensión. Y cuando el perro está enfocado en una tarea que involucra comida, la atención se aleja de los disparadores que causan ansiedad.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h4>🚪 Ansiedad por separación</h4>
+                    <p>Si se ofrece en el momento correcto, el Kong ayuda al perro a asociar la salida del dueño con una experiencia positiva y sabrosa.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h4>🍽️ Controla la velocidad de comer</h4>
+                    <p>Cuando la comida está escondida dentro del juguete, el perro necesita trabajar para conseguirla. Esto desacelera la ingesta y reduce el riesgo de problemas digestivos.</p>
+                </div>
+            </div>
+
+            <h3>El Kong en la rutina: cuándo y por qué ofrecerlo</h3>
+            <p>El poder del Kong está en la forma como se inserta en el día a día. Aquí te dejo algunas situaciones ideales para ofrecerlo:</p>
+
+            <ul>
+                <li><strong>Antes de salir de casa:</strong> Entregar el Kong relleno poco antes de salir puede cambiar completamente la forma en que el perro maneja la separación. Se distrae en el momento más sensible y crea una asociación positiva con tu ausencia.</li>
+                <li><strong>Después de la guardería o del paseo:</strong> Incluso cansado físicamente, el perro todavía necesita desacelerar. El Kong ayuda a transitar de la euforia al descanso, de forma natural.</li>
+                <li><strong>En días de lluvia o sin paseo:</strong> Cuando no es posible salir, el enriquecimiento ambiental se vuelve esencial. El Kong ocupa y estimula, incluso sin ejercicio físico.</li>
+                <li><strong>Durante el reposo post-cirugía o en casos de restricción física:</strong> Para perros que no pueden moverse, el Kong es una de las pocas fuentes seguras de estímulo y alivio del aburrimiento.</li>
+                <li><strong>Con o sin supervisión:</strong> Si el perro ya está acostumbrado y no destruye el juguete, el Kong puede ofrecerse sin supervisión. Para principiantes o perros destructivos, se recomienda observar las primeras veces hasta garantizar el uso seguro.</li>
+            </ul>
+
+            <div class="alert alert-info">
+                <strong>Conclusión:</strong> El Kong es uno de los juguetes más completos que existen. Cuando se usa con inteligencia, mejora el comportamiento, reduce el estrés y hace el día de tu perro más interesante. Es una solución simple, práctica y poderosa que todo dueño debería conocer y usar.
+            </div>
+        </section>
+
+        <section id="tipos">
+            <h2>Capítulo 2 – Tipos y cómo elegir un Kong</h2>
+
+            <h3>Tamaños</h3>
+            <p>Elegir el tamaño correcto del Kong es esencial para garantizar seguridad y eficacia. Un Kong muy pequeño puede ser peligroso, y uno muy grande puede desmotivar al perro.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tamaño</th>
+                        <th>Peso del Perro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>S (Pequeño)</strong></td>
+                        <td>Hasta 9 kg</td>
+                    </tr>
+                    <tr>
+                        <td><strong>M (Mediano)</strong></td>
+                        <td>De 7 a 16 kg</td>
+                    </tr>
+                    <tr>
+                        <td><strong>L (Grande)</strong></td>
+                        <td>De 13 a 30 kg</td>
+                    </tr>
+                    <tr>
+                        <td><strong>XL (Extra Grande)</strong></td>
+                        <td>Más de 30 kg</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="alert alert-warning">
+                <strong>Importante:</strong> Cuando tengas dudas, elige siempre el tamaño más grande. Esto reduce el riesgo de atragantamiento y prolonga la duración del juguete.
+            </div>
+
+            <h3>Materiales</h3>
+            <p>El Kong se vende en diferentes versiones, con gomas de densidades específicas para cada tipo de mordida:</p>
+
+            <div class="level">
+                <h4>🔵 Kong Puppy (azul o rosa)</h4>
+                <p>Goma más suave, ideal para cachorros en fase de cambio de dientes.</p>
+            </div>
+
+            <div class="level">
+                <h4>🔴 Kong Classic (rojo)</h4>
+                <p>Versión estándar, indicada para perros adultos con mordida moderada.</p>
+            </div>
+
+            <div class="level">
+                <h4>⚫ Kong Extreme (negro)</h4>
+                <p>Más resistente, pensado para perros con mordida fuerte y tendencia a destruir juguetes.</p>
+            </div>
+
+            <div class="level">
+                <h4>🟣 Kong Senior (morado)</h4>
+                <p>Más suave, hecho para perros mayores con menos fuerza en la mandíbula.</p>
+            </div>
+
+            <h3>Cómo saber el modelo correcto para tu perro</h3>
+            <p>Considera tres factores:</p>
+
+            <ol>
+                <li><strong>Edad:</strong> Los cachorros deben usar el Kong Puppy. Perros mayores, el Kong Senior.</li>
+                <li><strong>Fuerza de mordida:</strong> Perros destructores necesitan el Kong Extreme. Mordida leve o moderada se beneficia mejor del Kong Classic.</li>
+                <li><strong>Peso y tamaño:</strong> Usa el peso como guía para el tamaño, pero también evalúa la anatomía del hocico del perro. Las razas braquicefálicas, por ejemplo, se adaptan mejor con ciertos formatos.</li>
+            </ol>
+
+            <div class="alert alert-danger">
+                <strong>Atención:</strong> Evita improvisar con juguetes genéricos. Un Kong original, del tamaño correcto y con la goma adecuada, es más seguro y tiene durabilidad muy superior.
+            </div>
+
+            <h3>Alternativas económicas</h3>
+            <p>El Kong es referencia mundial, pero existen juguetes rellenables de buena calidad que también funcionan bien, con costo menor. Busca marcas reconocidas en tu país que ofrezcan:</p>
+
+            <ul>
+                <li>Goma resistente y atóxica</li>
+                <li>Formato con cavidad interna para relleno</li>
+                <li>Abertura que permite el relleno sin riesgo de tapar</li>
+                <li>Material indicado para masticación intensa</li>
+            </ul>
+
+            <div class="alert alert-info">
+                <strong>Consejo final:</strong> Tener 2 o 3 juguetes rellenables diferentes es lo ideal. Así puedes variar formato, textura y dificultad, manteniendo el interés de tu perro por mucho más tiempo.
+            </div>
+        </section>
+
+        <section id="uso">
+            <h2>Capítulo 3 – Empezando a usar el Kong</h2>
+
+            <h3>Los niveles de dificultad</h3>
+            <p>Si le entregas un Kong muy difícil desde el comienzo, tu perro va a desistir. Y si desiste, el juguete se vuelve decoración. El secreto es empezar fácil e ir aumentando la dificultad con el tiempo.</p>
+
+            <div class="level">
+                <h4>Nivel 1 – Principiante</h4>
+                <p>El objetivo aquí es solo hacer que el perro entienda que el Kong es positivo. Usa ingredientes muy fáciles de sacar, como croquetas sueltas, premios o pastas cremosas en poca cantidad. <strong>Nada de congelar en esta etapa.</strong> Necesita recompensa rápida.</p>
+            </div>
+
+            <div class="level">
+                <h4>Nivel 2 – Fácil</h4>
+                <p>Ahora el relleno empieza a tener capas. Mezcla croquetas con algo cremoso, como paté o yogur natural. Todavía sin congelar, pero ya con un poco más de desafío. Puedes presionar levemente para dificultar la salida sin bloquear todo.</p>
+            </div>
+
+            <div class="level">
+                <h4>Nivel 3 – Intermedio</h4>
+                <p>Aquí empiezas a compactar bien los ingredientes y puedes usar el congelador. Capas más densas y bien prensadas sostienen mejor la atención del perro. Mezcla texturas: crocante con cremoso, pastoso con sólido. El objetivo es mantenerlo entretenido por más tiempo.</p>
+            </div>
+
+            <div class="level">
+                <h4>Nivel 4 – Avanzado</h4>
+                <p>Es el Kong que realmente exige esfuerzo mental y físico. Lo congelas por completo y usas ingredientes más pegajosos y compactados. Puedes usar trucos como cerrar la base con mantequilla de maní, voltear boca abajo dentro de un vaso y llenar hasta arriba con caldos o purés antes de congelar. Este tipo de Kong puede durar hasta una hora con perros enfocados.</p>
+            </div>
+
+            <h3>Cómo subir de nivel de dificultad</h3>
+            <p>La progresión debe ser gradual. Perros que ya tienen costumbre con juguetes rellenables pueden avanzar más rápido. Los que se frustran con facilidad necesitan un ritmo más lento.</p>
+
+            <p><strong>Para saber cuándo subir de nivel, observa:</strong></p>
+            <ul>
+                <li>¿Lo vacía muy rápido? → Sube de nivel.</li>
+                <li>¿Está perdiendo el interés? → Cambia los ingredientes.</li>
+                <li>¿Lo intenta pero desiste? → Vuelve un nivel o facilita la salida.</li>
+            </ul>
+
+            <p>Puedes alternar niveles a lo largo de la semana. Por ejemplo, ofrecer un Kong congelado (nivel 4) cuando vas a salir de casa y uno más fácil (nivel 2) después del paseo, solo para relajar.</p>
+
+            <div class="alert alert-info">
+                <strong>Recuerda:</strong> No se trata de "vencer el Kong". Se trata de mantener al perro comprometido, desafiado y satisfecho con el proceso.
+            </div>
+        </section>
+
+        <section id="ingredientes">
+            <h2>Capítulo 4 – Ingredientes</h2>
+
+            <p>Elegir los ingredientes correctos es tan importante como el juguete en sí. Un Kong rellenado de forma incorrecta puede causar desde desinterés hasta diarrea. Un relleno bien pensado se convierte en una herramienta poderosa de enriquecimiento.</p>
+
+            <div class="ingredients-grid">
+                <div class="ingredient-section">
+                    <h4>✅ Permitidos</h4>
+                    
+                    <p><strong>Pastosos y cremosos:</strong></p>
+                    <ul>
+                        <li>Mantequilla de maní SIN azúcar ni xilitol</li>
+                        <li>Yogur natural (sin azúcar, sin edulcorante)</li>
+                        <li>Paté canino</li>
+                        <li>Calabaza cocida o puré de calabaza</li>
+                        <li>Queso crema (en poca cantidad)</li>
+                        <li>Plátano machacado</li>
+                        <li>Manzana rallada</li>
+                        <li>Requesón o queso cottage</li>
+                        <li>Papillas de bebé (sin cebolla, sin ajo)</li>
+                    </ul>
+
+                    <p><strong>Sólidos o semihúmedos:</strong></p>
+                    <ul>
+                        <li>Croquetas secas o humedecidas</li>
+                        <li>Pollo o carne cocida, desmenuzada</li>
+                        <li>Huevo cocido</li>
+                        <li>Vegetales cocidos (zanahoria, calabacín, brócoli, ejotes)</li>
+                        <li>Pedazos de frutas seguras (manzana, plátano, fresa, sandía)</li>
+                        <li>Premios naturales</li>
+                        <li>Arroz (en pequeñas cantidades)</li>
+                        <li>Avena cocida (en pequeñas cantidades)</li>
+                        <li>Papa sin condimentos</li>
+                    </ul>
+
+                    <p><strong>Extras para dar sabor:</strong></p>
+                    <ul>
+                        <li>Caldo de carne o pollo casero (sin condimentos)</li>
+                        <li>Agua de cocción de verduras</li>
+                        <li>Un chorrito de aceite de oliva</li>
+                    </ul>
+                </div>
+
+                <div class="ingredient-section avoid">
+                    <h4>🚫 Evita</h4>
+                    
+                    <p><strong>Nunca uses:</strong></p>
+                    <ul>
+                        <li>Cebolla, ajo o cualquier alimento condimentado</li>
+                        <li>Chocolate</li>
+                        <li>Uvas y pasas</li>
+                        <li>Xilitol (presente en muchos productos humanos)</li>
+                        <li>Alimentos picantes</li>
+                        <li>Productos industrializados con colorantes y conservantes</li>
+                        <li>Masa cruda (de pan, pastel, etc.)</li>
+                        <li>Azúcares</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="alert alert-warning">
+                <strong>Importante:</strong> Si tu perro tiene cualquier condición de salud (obesidad, enfermedad renal, intolerancia alimentaria), habla con un veterinario antes de usar ingredientes diferentes en su alimentación.
+            </div>
+        </section>
+
+        <section id="recetas">
+            <h2>Capítulo 5 – Recetas</h2>
+
+            <p>Aquí tienes 12 recetas organizadas por nivel de dificultad. Puedes adaptar las cantidades al tamaño del juguete y al porte de tu perro.</p>
+
+            <h3>Nivel 1 – Principiante</h3>
+            <div class="recipes">
+                <div class="recipe-card">
+                    <h4>Receta 1 – Pollo cremoso simple</h4>
+                    <div class="base">
+                        <strong>Base:</strong> Pollo desmenuzado + yogur natural
+                    </div>
+                    <p>Mezcla bien, rellena el Kong y ofrece sin congelar. Excelente opción para iniciar al perro con el juguete.</p>
+                </div>
+
+                <div class="recipe-card">
+                    <h4>Receta 2 – Plátano con croquetas</h4>
+                    <div class="base">
+                        <strong>Base:</strong> Plátano machacado + croquetas secas
+                    </div>
+                    <p>Mezcla el plátano con las croquetas y presiona levemente dentro del Kong. Ofrece sin congelar.</p>
+                </div>
+
+                <div class="recipe-card">
+                    <h4>Receta 3 – Mix crocante</h4>
+                    <div class="base">
+                        <strong>Base:</strong> Pollo desmenuzado + zanahoria cocida picada + croquetas secas
+                    </div>
+                    <p>Rellena y ofrece sin congelar. Ideal para perros que les gustan las texturas crocantes.</p>
+                </div>
+            </div>
+
+            <h3>Nivel 2 – Fácil</h3>
+            <div class="recipes">
+                <div class="recipe-card">
+                    <h4>Receta 4 – Frutas refrescantes</h4>
+                    <div class="base">
+                        <strong>Base:</strong> Manzana rallada + sandía picada + yogur natural
+                    </div>
+                    <p>Mezcla las frutas, agrega yogur, rellena y puedes congelar por poco tiempo u ofrecer fresco.</p>
+                </div>
+
+                <div class="recipe-card">
+                    <h4>Receta 5 – Paté sorpresa</h4>
+                    <div class="base">
+                        <strong>Base:</strong> Capas de paté canino + alimento húmedo + plátano machacado
+                    </div>
+                    <p>Monta el Kong en capas alternadas. Puedes ofrecer fresco o congelar por mínimo 1 hora.</p>
+                </div>
+
+                <div class="recipe-card">
+                    <h4>Receta 6 – Plátano proteico</h4>
+                    <div class="base">
+                        <strong>Base:</strong> Plátano machacado + huevo cocido picado + queso crema (poca cantidad)
+                    </div>
+                    <p>Mezcla, rellena y puedes ofrecer sin congelar o llevar al congelador por un tiempo corto.</p>
+                </div>
+            </div>
+
+            <h3>Nivel 3 – Intermedio</h3>
+            <div class="recipes">
+                <div class="recipe-card">
+                    <h4>Receta 7 – Puré de calabaza con pollo</h4>
+                    <div class="base">
+                        <strong>Base:</strong> Puré de calabaza + pollo desmenuzado + croquetas secas
+                    </div>
+                    <p>Mezcla todo, presiona en el Kong y congela por al menos 2 horas.</p>
+                </div>
+
+                <div class="recipe-card">
+                    <h4>Receta 8 – Combo relajante</h4>
+                    <div class="base">
+                        <strong>Base:</strong> Yogur natural + avena cocida + manzana rallada
+                    </div>
+                    <p>Mezcla, congela por mínimo 2 horas y ofrece en momentos de descanso.</p>
+                </div>
+
+                <div class="recipe-card">
+                    <h4>Receta 9 – Pollo con sorpresa congelada</h4>
+                    <div class="base">
+                        <strong>Base:</strong> Pollo desmenuzado + paté + caldo de carne casero
+                    </div>
+                    <p>Monta en capas y completa con caldo. Congela por 3 a 4 horas para mayor desafío.</p>
+                </div>
+            </div>
+
+            <h3>Nivel 4 – Avanzado</h3>
+            <div class="recipes">
+                <div class="recipe-card">
+                    <h4>Receta 10 – Mix de proteínas congelado</h4>
+                    <div class="base">
+                        <strong>Base:</strong> Pollo desmenuzado + huevo cocido picado + caldo de carne casero
+                    </div>
+                    <p>Rellena con las proteínas, completa con caldo y congela por mínimo 4 horas para crear un bloque resistente.</p>
+                </div>
+
+                <div class="recipe-card">
+                    <h4>Receta 11 – Comida completa congelada</h4>
+                    <div class="base">
+                        <strong>Base:</strong> Alimento húmedo + pedazos de pollo + vegetales cocidos + caldo de carne
+                    </div>
+                    <p>Monta capas compactadas y congela de un día para otro. Requiere esfuerzo prolongado.</p>
+                </div>
+
+                <div class="recipe-card">
+                    <h4>Receta 12 – Kong sorpresa extra congelado</h4>
+                    <div class="base">
+                        <strong>Base:</strong> Croquetas secas + yogur natural + plátano + caldo de carne
+                    </div>
+                    <p>Presiona bien todos los ingredientes, cierra con mantequilla de maní y congela por 5 a 6 horas para máxima dificultad.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq">
+            <h2>Capítulo 6 – Preguntas Frecuentes</h2>
+
+            <div class="faq-item">
+                <h4>Mi perro destruyó el Kong. ¿Y ahora?</h4>
+                <p>Primero, verifica si compraste el modelo correcto para la fuerza de mordida de tu perro. Perros con mordida fuerte necesitan el Kong Extreme (negro). El Kong Classic puede ser destruido por perros más intensos. Si lo destruyó incluso usando el modelo correcto, tal vez sea necesario supervisar o alternar con otros juguetes más resistentes.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>Perdió el interés en el Kong. ¿Qué hacer?</h4>
+                <p>Esto sucede cuando el nivel de dificultad no es adecuado o cuando usas siempre los mismos rellenos. Varía los ingredientes, cambia el nivel de desafío, congela algunas veces y ofrece el Kong en momentos estratégicos, como antes de salir de casa. A veces el perro se aburre porque el Kong se volvió parte de la rutina predecible y dejó de ser algo especial.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>¿Hay riesgo de atragantarse?</h4>
+                <p>El Kong es un juguete seguro si eliges el tamaño correcto para tu perro. Juguetes pequeños en perros grandes pueden representar riesgo, así como juguetes dañados o ya rasgados. Siempre supervisa las primeras veces de uso y verifica el estado del juguete con frecuencia. Si empieza a presentar grietas o pedazos sueltos, descártalo.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>¿Puedo dejar el Kong con el perro solo?</h4>
+                <p>Sí, si es un único perro que ya está acostumbrado al juguete y no destruye con facilidad. Pero si tienes más de un perro en casa, no es seguro dejar Kongs esparcidos sin supervisión. Los juguetes rellenos pueden generar disputa, conflicto y hasta pelea grave entre perros. En ese caso, lo ideal es ofrecer el Kong cuando estés presente y puedas separar a los perros si es necesario.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>¿Cómo ofrecer el Kong si tengo más de un perro?</h4>
+                <p>Siempre ofrece en ambientes separados, especialmente si los perros todavía no tienen buen control emocional o tendencia a competir por comida. Puedes crear momentos individuales para cada uno u ofrecer el Kong dentro de transportadoras o espacios delimitados, para garantizar que cada perro tenga su momento sin riesgo de pelea.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>¿Qué hago si el perro no vacía el Kong hasta el final? ¿Puedo guardar y dar después?</h4>
+                <p>Sí, puedes guardar. Retira el Kong, limpia superficialmente y coloca en el refrigerador si quieres ofrecer el mismo día. Si es para el día siguiente, lo ideal es lavar y montar un nuevo relleno. Pero atención: si el relleno estuvo expuesto fuera del refrigerador por mucho tiempo o si el ambiente está caliente, el alimento puede echarse a perder. Observa siempre la calidad de la comida.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>¿Cómo lavar e higienizar el Kong?</h4>
+                <p>Lava con agua tibia y jabón neutro, usando un cepillo pequeño o un cepillo de biberón para alcanzar todas las áreas internas. Si el relleno se secó dentro del Kong, déjalo remojando por algunos minutos. El Kong también puede lavarse en el lavavajillas, siempre que esté posicionado correctamente para que el agua entre en el juguete. Siempre asegúrate de que no quedó ningún residuo atrapado por dentro.</p>
+            </div>
+        </section>
+
+        <section id="comprar">
+            <h2>Capítulo 7 – Dónde comprar</h2>
+
+            <p>El Kong original está disponible en tiendas de mascotas, veterinarias y plataformas de comercio electrónico en toda Latinoamérica. Busca en:</p>
+
+            <ul>
+                <li>Amazon (disponible en México, España y con envío internacional)</li>
+                <li>MercadoLibre (disponible en México, Colombia, Argentina, Chile, Perú)</li>
+                <li>Petco y PetSmart (México)</li>
+                <li>Tiendas de mascotas locales</li>
+                <li>Veterinarias especializadas</li>
+            </ul>
+
+            <h3>Modelos recomendados:</h3>
+
+            <div class="level">
+                <h4>🔴 KONG CLASSIC (rojo)</h4>
+                <p>Para perros adultos con mordida normal. Disponible en tamaños S, M, L y XL.</p>
+            </div>
+
+            <div class="level">
+                <h4>⚫ KONG EXTREME (negro)</h4>
+                <p>Para perros con mordida fuerte o que destruyen juguetes fácilmente. Disponible en tamaños S, M, L y XL.</p>
+            </div>
+
+            <div class="level">
+                <h4>🔵 KONG PUPPY (azul/rosa)</h4>
+                <p>Para cachorros en fase de dentición. Goma más suave. Disponible en tamaños XS, S, M y L.</p>
+            </div>
+
+            <div class="level">
+                <h4>🟣 KONG SENIOR (morado)</h4>
+                <p>Para perros mayores con mandíbula más débil. Goma más suave. Disponible en tamaños S, M y L.</p>
+            </div>
+
+            <div class="alert alert-warning">
+                <strong>Consejo:</strong> Siempre verifica que sea el producto original KONG. Hay muchas imitaciones en el mercado que pueden no ser seguras para tu perro.
+            </div>
+        </section>
+    </div>
+
+    <footer id="autor">
+        <h3>Capítulo 8 – Sobre el Autor</h3>
+        
+        <p><strong>Miguel Entrenador</strong> es entrenador canino especializado en comportamiento y bienestar de perros.</p>
+        
+        <p>Con años de experiencia ayudando a familias de toda Latinoamérica, Miguel se dedica a enseñar a los dueños a crear perros más equilibrados, felices y comprendidos — siempre con métodos basados en el respeto, el vínculo y la ciencia del comportamiento animal.</p>
+        
+        <div class="social">
+            <p>Sígueme en <a href="https://instagram.com/miguel.entrenadorcanino" target="_blank">@miguel.entrenadorcanino</a></p>
+        </div>
+
+        <p style="font-style: italic; margin: 2rem 0; font-size: 1.2rem;">"Mi misión es que tú y tu perro vivan en armonía. Sin gritos, sin castigos, sin estrés. Solo con el método correcto."</p>
+
+        <div class="courses">
+            <h4>Cursos disponibles:</h4>
+            <ul>
+                <li>Método REC – Enseña a tu perro a hacer pipí y popó en el lugar correcto</li>
+                <li>Ansiedad por Separación – Ayuda a tu perro a quedarse solo sin sufrir</li>
+                <li>Obediencia Básica – Los comandos esenciales para la convivencia</li>
+                <li>Ladrido Excesivo – Soluciones para perros que ladran demasiado</li>
+            </ul>
+        </div>
+
+        <div class="copyright">
+            <p><strong>Todos los derechos reservados.</strong></p>
+            <p>Este eBook es propiedad exclusiva de Miguel Entrenador. Ninguna parte de este material puede ser reproducida, distribuida, transmitida, copiada o compartida por cualquier medio —electrónico o físico— sin la autorización previa y por escrito del autor.</p>
+        </div>
+
+        <p style="margin-top: 2rem; font-size: 1.1rem;">¡Gracias por leer esta guía!</p>
+    </footer>
+
+    <div class="back-to-top" id="backToTop">↑</div>
+
+    <script>
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
