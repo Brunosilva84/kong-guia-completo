@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método REC - Productos Repelentes y Neutralizadores | Miguel Entrenador</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #3498DB;
+            --secondary-color: #2ECC71;
+            --dark-color: #2C3E50;
+            --light-color: #ECF0F1;
+            --accent-color: #9B59B6;
+            --text-color: #34495E;
+            --success-color: #27AE60;
+            --warning-color: #E67E22;
+            --product-1: #E74C3C;
+            --product-2: #3498DB;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #8E44AD 0%, #3498DB 100%);
+            color: white;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+        }
+
+        header .author {
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            opacity: 0.9;
+        }
+
+        .chapter-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Sections */
+        section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        section h2 {
+            color: var(--accent-color);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        section h3 {
+            color: var(--dark-color);
+            font-size: 1.6rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        section p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* Intro Box */
+        .intro-box {
+            background: linear-gradient(135deg, #E3F2FD 0%, #F1F8E9 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-color);
+            margin: 2rem 0;
+        }
+
+        /* Product Cards */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid;
+        }
+
+        .product-card.repellent {
+            border-top-color: var(--product-1);
+        }
+
+        .product-card.neutralizer {
+            border-top-color: var(--product-2);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .product-icon {
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .product-number {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-card h3 {
+            color: var(--dark-color);
+            margin-top: 0;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-function {
+            background: #F5F5F5;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .product-usage {
+            background: #E8F5E9;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 3px solid var(--success-color);
+        }
+
+        /* Brands Section */
+        .brands-box {
+            background: linear-gradient(135deg, #FFF9E6 0%, #FFF3E0 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+
+        .brands-box h4 {
+            color: var(--warning-color);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .brand-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 0.8rem 0;
+            border-left: 3px solid var(--warning-color);
+        }
+
+        .brand-item strong {
+            color: var(--dark-color);
+            display: inline-block;
+            min-width: 100px;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: #E3F2FD;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary-color);
+            margin: 1.5rem 0;
+        }
+
+        /* Important Note */
+        .important-note {
+            background: linear-gradient(135deg, #FFEBEE 0%, #FFCDD2 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 3px solid #E74C3C;
+            margin: 3rem 0;
+        }
+
+        .important-note h3 {
+            color: #C62828;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .important-note p {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Where to Buy Box */
+        .buy-box {
+            background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .buy-box h3 {
+            color: var(--accent-color);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .buy-link {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .buy-link:hover {
+            background: #7B1FA2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(123, 31, 162, 0.3);
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
+            color: white;
+            padding: 1.2rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1.2rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: #F5F5F5;
+        }
+
+        /* Highlight Box */
+        .highlight {
+            background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--success-color);
+            margin: 1.5rem 0;
+            font-weight: 500;
+        }
+
+        /* Divider */
+        .divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            margin: 3rem 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        footer h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        .social {
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+        }
+
+        .social a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .social a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #7B1FA2;
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 1.5rem 1rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+                margin-bottom: 0.3rem;
+            }
+
+            header .subtitle {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            header .author {
+                font-size: 0.9rem;
+                margin-top: 0.5rem;
+            }
+
+            .chapter-badge {
+                font-size: 0.9rem;
+                padding: 0.4rem 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-icon {
+                font-size: 3rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🧴 Método REC 🧴</h1>
+        <div class="subtitle">Productos Repelentes y Neutralizadores</div>
+        <div class="chapter-badge">📖 Capítulo 6</div>
+        <div class="author">@miguel.entrenadorcanino</div>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>Los dos productos que necesitas</h2>
+            
+            <div class="intro-box">
+                <p>En mi protocolo de educación sanitaria, hay dos tipos de productos que considero esenciales. No son mágicos y no van a resolver el problema por sí solos, pero cuando los usas junto con todo el manejo que te enseñé en las lecciones anteriores, hacen una diferencia importante.</p>
+            </div>
+
+            <p>Después de más de siete años trabajando en esto y atendiendo innumerables casos, he probado prácticamente todos los productos que puedas imaginar. <strong>Estos son los que realmente funcionan.</strong></p>
+        </section>
+
+        <div class="divider"></div>
+
+        <div class="products-grid">
+            <div class="product-card repellent">
+                <div class="product-number">1</div>
+                <div class="product-icon">🚫</div>
+                <h3>Repelente (para alejar)</h3>
+                
+                <div class="product-function">
+                    <strong>Función:</strong> Hacer que tu perro no quiera acercarse a ciertos lugares.
+                </div>
+
+                <div class="product-usage">
+                    <p><strong>📍 Cómo usarlo:</strong></p>
+                    <p>Lo vas a usar en las zonas donde <strong>no quieres</strong> que tu perro haga sus necesidades. Aplica de dos a tres veces en esos lugares y el olor va a disuadirlo de hacerlo ahí.</p>
+                </div>
+
+                <p>Busca productos específicos para mascotas que digan "repelente" o "alejador" en la etiqueta. En cada país hay marcas diferentes, pero la función es la misma.</p>
+
+                <div class="brands-box">
+                    <h4>🌎 Marcas comunes por región:</h4>
+                    
+                    <div class="brand-item">
+                        <strong>🇲🇽 México:</strong> Fancy Pets o Pet Sana
+                    </div>
+
+                    <div class="brand-item">
+                        <strong>🇨🇴 Colombia:</strong> Ciudaddemascotas
+                    </div>
+
+                    <div class="brand-item">
+                        <strong>🇪🇸 España:</strong> Menforsan
+                    </div>
+
+                    <div class="brand-item">
+                        <strong>🌎 Internacional:</strong> Amazon (envíos a toda Latinoamérica)
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card neutralizer">
+                <div class="product-number">2</div>
+                <div class="product-icon">✨</div>
+                <h3>Neutralizador Enzimático</h3>
+                
+                <div class="product-function">
+                    <strong>Este es quizás el más importante de los dos.</strong>
+                </div>
+
+                <div class="info-box">
+                    <p><strong>🔬 Cómo funciona:</strong></p>
+                    <p>Cuando tu perro hace pipí en un lugar, aunque limpies con productos normales, queda un olor residual que tú no percibes pero tu perro sí. Ese olor le dice: "aquí es donde hago pipí". Y va a volver a hacerlo en ese mismo lugar.</p>
+                </div>
+
+                <p>El neutralizador enzimático no solo limpia, sino que <strong>elimina completamente el olor</strong> a nivel molecular. Destruye las enzimas que generan el olor, no solo las tapa.</p>
+
+                <div class="highlight">
+                    <p><strong>💡 Importante:</strong> Este producto es fundamental para romper el ciclo de "siempre hace en el mismo lugar equivocado".</p>
+                </div>
+
+                <div class="brands-box">
+                    <h4>⭐ Marcas recomendadas:</h4>
+                    
+                    <div class="brand-item">
+                        <strong>🏆 Nature's Miracle:</strong> Excelente, disponible en Amazon
+                    </div>
+
+                    <div class="brand-item">
+                        <strong>🏆 Rocco & Roxie:</strong> Excelente, disponible en Amazon
+                    </div>
+
+                    <div class="brand-item">
+                        <strong>🛒 Local:</strong> Busca productos que digan específicamente "enzimático" o "elimina olores de mascotas"
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2>Dónde comprarlos</h2>
+
+            <div class="buy-box">
+                <h3>🛒 Enlaces de Compra</h3>
+                <p style="margin-bottom: 1.5rem;">Voy a dejar los enlaces de Amazon debajo de esta lección para que puedas adquirirlos fácilmente si no los encuentras en tu ciudad o prefieres comprar online.</p>
+                
+                <a href="#" class="buy-link">🔗 Ver productos en Amazon</a>
+            </div>
+
+            <div class="info-box">
+                <p><strong>💬 Si me escribes preguntando:</strong> "¿puedo usar este otro producto que tengo en casa?"</p>
+                <p><strong>Mi respuesta va a ser la misma:</strong> Estos son los que yo recomiendo porque son los que he visto funcionar consistentemente a lo largo de los años.</p>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <div class="important-note">
+            <h3>⚠️ La advertencia importante</h3>
+            
+            <p>Necesito ser muy claro en algo: <strong>estos productos solos no van a hacer milagros</strong>.</p>
+
+            <p>Puedes comprar el mejor repelente del mundo y el neutralizador más caro del mercado, pero si no estás haciendo todo el manejo que expliqué en las lecciones anteriores, no vas a ver resultados.</p>
+
+            <div class="highlight" style="margin-top: 1.5rem;">
+                <p><strong>Los productos son herramientas de apoyo. El verdadero trabajo está en:</strong></p>
+                <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                    <li>La alimentación regulada</li>
+                    <li>El control del ambiente</li>
+                    <li>La captura del comportamiento correcto</li>
+                    <li>La consistencia diaria</li>
+                </ul>
+            </div>
+
+            <p style="font-size: 1.2rem; font-weight: 600; margin-top: 1.5rem; text-align: center;">Usa los productos como complemento, no como solución única.</p>
+        </div>
+
+        <section>
+            <h2>Resumen rápido</h2>
+
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Función</th>
+                            <th>Dónde usar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>🚫 Repelente</strong></td>
+                            <td>Alejar al perro de zonas específicas</td>
+                            <td>Lugares donde NO quieres que haga</td>
+                        </tr>
+                        <tr>
+                            <td><strong>✨ Neutralizador Enzimático</strong></td>
+                            <td>Eliminar olores completamente</td>
+                            <td>Lugares donde YA hizo (para limpiar)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <h3>Sobre el Autor</h3>
+        
+        <p><strong>Miguel Entrenador</strong></p>
+        <p>Entrenador canino especializado en comportamiento y bienestar de perros.</p>
+        
+        <div class="social">
+            <p>Sígueme en <a href="https://instagram.com/miguel.entrenadorcanino" target="_blank">@miguel.entrenadorcanino</a></p>
+        </div>
+
+        <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">© Todos los derechos reservados - Miguel Entrenador</p>
+    </footer>
+
+    <div class="back-to-top" id="backToTop">↑</div>
+
+    <script>
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
