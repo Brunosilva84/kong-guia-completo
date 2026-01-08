@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método REC - Cómo Funciona la Mente del Perro | Miguel Entrenador</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #3498DB;
+            --secondary-color: #2ECC71;
+            --dark-color: #2C3E50;
+            --light-color: #ECF0F1;
+            --accent-color: #9B59B6;
+            --text-color: #34495E;
+            --success-color: #27AE60;
+            --warning-color: #E67E22;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+        }
+
+        header .author {
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            opacity: 0.9;
+        }
+
+        .chapter-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Sections */
+        section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        section h2 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        section h3 {
+            color: var(--dark-color);
+            font-size: 1.6rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        section h4 {
+            color: var(--text-color);
+            font-size: 1.3rem;
+            margin: 1.5rem 0 0.8rem 0;
+        }
+
+        section p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        section ul, section ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        section li {
+            margin: 0.5rem 0;
+            line-height: 1.6;
+        }
+
+        /* Intro Box */
+        .intro-box {
+            background: linear-gradient(135deg, #E3F2FD 0%, #F1F8E9 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-color);
+            margin: 2rem 0;
+        }
+
+        .intro-box p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Quadrant Cards */
+        .quadrants {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .quadrant-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            border-top: 4px solid var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .quadrant-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(52,152,219,0.2);
+        }
+
+        .quadrant-card h4 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .quadrant-card.positive {
+            border-top-color: var(--success-color);
+        }
+
+        .quadrant-card.positive h4 {
+            color: var(--success-color);
+        }
+
+        .quadrant-card.negative {
+            border-top-color: var(--accent-color);
+        }
+
+        .quadrant-card.negative h4 {
+            color: var(--accent-color);
+        }
+
+        /* Example Box */
+        .example-box {
+            background: #FFF9E6;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--warning-color);
+            margin: 1rem 0;
+        }
+
+        .example-box strong {
+            color: var(--warning-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Highlight Box */
+        .highlight {
+            background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--success-color);
+            margin: 1.5rem 0;
+            font-weight: 500;
+        }
+
+        /* Warning Box */
+        .warning {
+            background: #FFF3E0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--warning-color);
+            margin: 1.5rem 0;
+        }
+
+        .warning strong {
+            color: var(--warning-color);
+        }
+
+        /* Info Box */
+        .info-box {
+            background: #E3F2FD;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary-color);
+            margin: 1.5rem 0;
+        }
+
+        /* Markers Section */
+        .markers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .marker-card {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+            text-align: center;
+        }
+
+        .marker-card.ok {
+            border-color: var(--success-color);
+            background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 100%);
+        }
+
+        .marker-card.no {
+            border-color: var(--accent-color);
+            background: linear-gradient(135deg, #F3E5F5 0%, #FCE4EC 100%);
+        }
+
+        .marker-card h4 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .marker-card.ok h4 {
+            color: var(--success-color);
+        }
+
+        .marker-card.no h4 {
+            color: var(--accent-color);
+        }
+
+        /* Sequence Box */
+        .sequence {
+            background: #F5F5F5;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        .sequence strong {
+            color: var(--primary-color);
+        }
+
+        .sequence-arrow {
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin: 0 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        footer h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        .social {
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+        }
+
+        .social a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .social a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Divider */
+        .divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            margin: 3rem 0;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 1.5rem 1rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+                margin-bottom: 0.3rem;
+            }
+
+            header .subtitle {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            header .author {
+                font-size: 0.9rem;
+                margin-top: 0.5rem;
+            }
+
+            .chapter-badge {
+                font-size: 0.9rem;
+                padding: 0.4rem 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .quadrants {
+                grid-template-columns: 1fr;
+            }
+
+            .markers {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🧠 Método REC 🧠</h1>
+        <div class="subtitle">Cómo Funciona la Mente del Perro</div>
+        <div class="chapter-badge">📖 Capítulo 1</div>
+        <div class="author">@miguel.entrenadorcanino</div>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>Introducción: Todo es comportamiento</h2>
+            
+            <div class="intro-box">
+                <p><strong>Cada momento que pasas con tu perro, estás reforzando algún comportamiento, lo sepas o no. No hay excepciones.</strong></p>
+            </div>
+
+            <p>Imagina esta situación: estás trabajando en casa y tu perro se acerca pidiendo cariño. Si en ese momento le haces caso y lo acaricias, acabas de crear un condicionamiento en su mente. Aprendió que cada vez que pide cariño de esa forma, lo consigue. Así de simple funciona su cerebro.</p>
+
+            <p>Por eso es tan importante entender los principios básicos del comportamiento canino. No para convertirte en un adiestrador profesional, sino para que cada interacción con tu perro sea intencional y constructiva.</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2>Los Cuatro Cuadrantes del Comportamiento</h2>
+
+            <p>En el mundo del adiestramiento existe un concepto fundamental que necesitas conocer: <strong>los cuadrantes del comportamiento</strong>. Son cuatro y es importante que los entiendas bien.</p>
+
+            <div class="warning">
+                <p><strong>⚠️ Importante:</strong> Cuando hablamos de "positivo" y "negativo" aquí, <strong>no significa "bueno" o "malo"</strong>. Estos términos vienen de las matemáticas. Positivo significa que sumamos algo, negativo significa que restamos algo.</p>
+            </div>
+
+            <div class="quadrants">
+                <div class="quadrant-card positive">
+                    <h4>➕ Refuerzo Positivo</h4>
+                    <p><strong>Añades algo agradable</strong> para fortalecer un comportamiento.</p>
+                    <div class="example-box">
+                        <strong>Ejemplo:</strong>
+                        <p>Cada vez que tu perro se sienta, le das un premio. Estás sumando algo (el premio) para que ese comportamiento se repita. Es la forma más amigable y efectiva de enseñar.</p>
+                    </div>
+                </div>
+
+                <div class="quadrant-card negative">
+                    <h4>➖ Refuerzo Negativo</h4>
+                    <p><strong>Retiras algo desagradable</strong> para fortalecer un comportamiento.</p>
+                    <div class="example-box">
+                        <strong>Ejemplo:</strong>
+                        <p>Mientras el perro no se sienta, no recibe el premio. Cuando finalmente lo hace, la "presión" de no recibir nada desaparece. El alivio de esa presión refuerza el comportamiento.</p>
+                    </div>
+                </div>
+
+                <div class="quadrant-card positive">
+                    <h4>➕ Castigo Positivo</h4>
+                    <p><strong>Añades algo desagradable</strong> para debilitar un comportamiento.</p>
+                    <div class="warning">
+                        <p><strong>⚠️ Aclaración importante:</strong> Castigo no significa golpear, ahorcar ni maltratar al perro. Castigo es simplemente algo que el perro considera desagradable y que usamos para reducir un comportamiento no deseado.</p>
+                    </div>
+                    <div class="example-box">
+                        <strong>Ejemplo:</strong>
+                        <p>Un "no" firme cuando intenta tomar comida del suelo, o una leve tensión en la correa para redirigir su atención.</p>
+                    </div>
+                </div>
+
+                <div class="quadrant-card negative">
+                    <h4>➖ Castigo Negativo</h4>
+                    <p><strong>Retiras algo agradable</strong> para debilitar un comportamiento.</p>
+                    <div class="example-box">
+                        <strong>Ejemplo:</strong>
+                        <p>Llegas a casa y tu perro está saltando como loco porque quiere tu atención. En lugar de saludarlo en ese estado, simplemente sales y cierras la puerta. Le quitaste lo que quería (tu presencia) hasta que se calme.</p>
+                        <p>Repites esto varias veces. Cuando finalmente está tranquilo al abrir la puerta, entras y lo saludas con calma, reforzando positivamente ese estado de calma.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2>Los Marcadores de Comportamiento</h2>
+
+            <p>Además de los cuadrantes, existe otra herramienta muy poderosa: <strong>los marcadores de comportamiento</strong>.</p>
+
+            <div class="highlight">
+                <p>Un marcador es una señal que le indica a tu perro si lo que está haciendo está bien o mal. Es como un traductor instantáneo entre tu mundo y el suyo.</p>
+            </div>
+
+            <h3>Lo que tu perro puede entender</h3>
+
+            <div class="info-box">
+                <p><strong>🧠 Dato importante:</strong> Los perros procesan <strong>las dos primeras sílabas</strong> de cada palabra. Por eso los comandos son cortos: "ven", "sienta", "quieto", "junto". Más sílabas solo generan confusión.</p>
+            </div>
+
+            <p>También son extremadamente sensibles a la <strong>entonación de tu voz</strong>. Un perro puede detectar si estás en modo confrontación o en modo amigable solo por tu energía, sin que digas una palabra.</p>
+
+            <p>Esta sensibilidad es la razón por la que los perros trabajan como animales de asistencia para niños con autismo y personas con diferentes condiciones. Perciben estados emocionales que nosotros ni siquiera notamos.</p>
+
+            <h3>Los marcadores que uso</h3>
+
+            <div class="markers">
+                <div class="marker-card ok">
+                    <h4>✅ "OK" o "Muy bien"</h4>
+                    <p>Para indicar que acertó</p>
+                </div>
+
+                <div class="marker-card no">
+                    <h4>❌ "No"</h4>
+                    <p>Para indicar que se equivocó</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <p><strong>💡 Sobre el clicker:</strong> Algunos entrenadores usan el clicker, ese dispositivo que hace un sonido al presionarlo. Personalmente, prefiero usar la voz porque <strong>siempre la tengo conmigo</strong>.</p>
+                <p>Piénsalo así: si tu perro hace algo correcto de forma espontánea, tienes entre <strong>2 y 3 segundos</strong> para marcar ese comportamiento. Si tienes que buscar el clicker, ya perdiste la oportunidad. Tu voz siempre está lista.</p>
+            </div>
+
+            <h3>La secuencia práctica</h3>
+
+            <p>Así funciona en la vida real:</p>
+
+            <div class="sequence">
+                <p><strong>Cuando acierta:</strong><br>
+                El perro se sienta <span class="sequence-arrow">→</span> Dices "OK" <span class="sequence-arrow">→</span> Le das el premio</p>
+            </div>
+
+            <div class="sequence">
+                <p><strong>Cuando se equivoca:</strong><br>
+                El perro toma comida del suelo <span class="sequence-arrow">→</span> Dices "No" <span class="sequence-arrow">→</span> Aplicas la corrección</p>
+            </div>
+
+            <div class="highlight">
+                <p>El secreto está en dejar <strong>un pequeño retraso</strong> entre el marcador verbal y la consecuencia. Esto permite que tu perro asocie que después de escuchar la palabra, viene el resultado. Con el tiempo, el marcador por sí solo tendrá significado para él.</p>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2>Conclusión</h2>
+
+            <p>Entender estos principios te da una ventaja enorme en la convivencia con tu perro.</p>
+
+            <p>Ya no estarás reforzando comportamientos sin darte cuenta. Ya no te preguntarás "¿por qué hace eso?" sin tener respuesta. Cada interacción con tu perro será una oportunidad de comunicarte claramente con él.</p>
+
+            <div class="highlight">
+                <p><strong>Recuerda:</strong> tu perro no es terco ni desobediente. Simplemente responde a lo que tú, consciente o inconscientemente, le has enseñado. Ahora que entiendes cómo funciona su mente, tienes el poder de guiarlo hacia los comportamientos que quieres ver.</p>
+            </div>
+
+            <p style="text-align: center; font-size: 1.2rem; margin-top: 2rem; font-weight: 600;">
+                En el próximo capítulo, vamos a poner todo esto en práctica.
+            </p>
+        </section>
+    </div>
+
+    <footer>
+        <h3>Sobre el Autor</h3>
+        
+        <p><strong>Miguel Entrenador</strong></p>
+        <p>Entrenador canino especializado en comportamiento y bienestar de perros.</p>
+        
+        <div class="social">
+            <p>Sígueme en <a href="https://instagram.com/miguel.entrenadorcanino" target="_blank">@miguel.entrenadorcanino</a></p>
+        </div>
+
+        <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">© Todos los derechos reservados - Miguel Entrenador</p>
+    </footer>
+
+    <div class="back-to-top" id="backToTop">↑</div>
+
+    <script>
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
