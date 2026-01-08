@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método REC - ¿Y Si No Está Funcionando? | Miguel Entrenador</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #3498DB;
+            --secondary-color: #2ECC71;
+            --dark-color: #2C3E50;
+            --light-color: #ECF0F1;
+            --accent-color: #9B59B6;
+            --text-color: #34495E;
+            --success-color: #27AE60;
+            --warning-color: #E67E22;
+            --danger-color: #E74C3C;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #E67E22 0%, #E74C3C 100%);
+            color: white;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+        }
+
+        header .author {
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            opacity: 0.9;
+        }
+
+        .chapter-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Sections */
+        section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        section h2 {
+            color: var(--warning-color);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--danger-color);
+        }
+
+        section h3 {
+            color: var(--dark-color);
+            font-size: 1.6rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        section p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        section ul {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        section li {
+            margin: 0.5rem 0;
+            line-height: 1.6;
+        }
+
+        /* Important Warning */
+        .important-warning {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 3px solid var(--warning-color);
+            margin: 2rem 0;
+        }
+
+        .important-warning h3 {
+            color: var(--warning-color);
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .important-warning p {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Problem Alert */
+        .problem-alert {
+            background: linear-gradient(135deg, #FFEBEE 0%, #FFCDD2 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--danger-color);
+            margin: 2rem 0;
+        }
+
+        .problem-alert h3 {
+            color: var(--danger-color);
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        /* Definition Box */
+        .definition-box {
+            background: linear-gradient(135deg, #E8EAF6 0%, #C5CAE9 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #5C6BC0;
+            margin: 2rem 0;
+        }
+
+        .definition-box h3 {
+            color: #3F51B5;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .definition-box .term {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #3F51B5;
+        }
+
+        /* Symptoms List */
+        .symptoms-list {
+            background: #FFF9E6;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .symptoms-list h4 {
+            color: var(--warning-color);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .symptom-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 0.8rem 0;
+            border-left: 3px solid var(--warning-color);
+        }
+
+        .symptom-item::before {
+            content: "⚠️ ";
+            font-size: 1.2rem;
+        }
+
+        /* Course Offer Box */
+        .course-offer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .course-offer h2 {
+            color: white;
+            border-bottom: 3px solid rgba(255,255,255,0.3);
+            font-size: 2.5rem;
+            text-align: center;
+        }
+
+        .course-offer h3 {
+            color: white;
+            text-align: center;
+            margin: 2rem 0 1.5rem 0;
+        }
+
+        /* Benefits List */
+        .benefits-list {
+            margin: 2rem 0;
+        }
+
+        .benefit-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1.2rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 4px solid white;
+            backdrop-filter: blur(10px);
+        }
+
+        .benefit-item strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Price Box */
+        .price-box {
+            background: rgba(255,255,255,0.95);
+            color: var(--dark-color);
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .price-box .regular-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-box .special-price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--success-color);
+            margin: 1rem 0;
+        }
+
+        .price-box .special-label {
+            background: var(--danger-color);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: block;
+            background: linear-gradient(135deg, var(--success-color) 0%, #27AE60 100%);
+            color: white;
+            padding: 1.5rem 3rem;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-decoration: none;
+            margin: 2rem auto;
+            max-width: 400px;
+            box-shadow: 0 8px 20px rgba(39, 174, 96, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(39, 174, 96, 0.6);
+        }
+
+        /* Divider */
+        .divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--warning-color), transparent);
+            margin: 3rem 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        footer h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        .social {
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+        }
+
+        .social a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .social a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--warning-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--danger-color);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 1.5rem 1rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+                margin-bottom: 0.3rem;
+            }
+
+            header .subtitle {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            header .author {
+                font-size: 0.9rem;
+                margin-top: 0.5rem;
+            }
+
+            .chapter-badge {
+                font-size: 0.9rem;
+                padding: 0.4rem 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .course-offer {
+                padding: 2rem 1.5rem;
+            }
+
+            .course-offer h2 {
+                font-size: 1.8rem;
+            }
+
+            .price-box .special-price {
+                font-size: 2rem;
+            }
+
+            .cta-button {
+                font-size: 1.1rem;
+                padding: 1.2rem 2rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>⚠️ Método REC ⚠️</h1>
+        <div class="subtitle">¿Y Si No Está Funcionando?</div>
+        <div class="chapter-badge">📖 Capítulo 5</div>
+        <div class="author">@miguel.entrenadorcanino</div>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>Sigue el método al pie de la letra</h2>
+            
+            <div class="important-warning">
+                <h3>📋 Importante antes de continuar</h3>
+                <p>Necesito pedirte algo importante: <strong>sigue exactamente lo que te enseño en este entrenamiento</strong>. Sin atajos, sin modificaciones, sin "a ver si funciona de otra forma".</p>
+            </div>
+
+            <p>Si digo que no liberes a tu perro después de que haga sus necesidades, no lo liberes. Si digo que la comida debe ser regulada pero no menciono el agua, es porque el agua puede quedar libre, pero la alimentación debe tener horarios. Cada instrucción tiene una razón de ser.</p>
+
+            <p><strong>Cuando sigues el método completo, los resultados aparecen. Cuando empiezas a cambiar cosas por tu cuenta, los resultados se complican.</strong></p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2>Cuando el problema es otro</h2>
+
+            <p>Ahora, hay algo que necesitas saber.</p>
+
+            <div class="problem-alert">
+                <h3>🚨 Señal de alerta</h3>
+                <p>Si aplicaste todo correctamente y tu perro sigue haciendo sus necesidades en el lugar equivocado, especialmente cuando no estás en casa, o si "hace desastres" justamente cuando te vas, el problema probablemente no es la educación sanitaria.</p>
+                <p style="margin-bottom: 0;"><strong>El problema es la comunicación que tienes con él. No están logrando entenderse.</strong></p>
+            </div>
+
+            <div class="definition-box">
+                <h3>Y esto tiene un nombre específico:</h3>
+                <p class="term">Ansiedad por Separación</p>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2>¿Qué es la ansiedad por separación?</h2>
+
+            <p>Es cuando tu perro desarrolla una dependencia emocional hacia ti o hacia alguien de la familia, y se vuelve incapaz de estar solo. No puede manejar la ausencia. No sabe qué hacer cuando no recibe atención.</p>
+
+            <div class="symptoms-list">
+                <h4>Síntomas típicos incluyen:</h4>
+
+                <div class="symptom-item">
+                    Hacer pipí o popó cuando te vas (aunque lo haga bien cuando estás presente)
+                </div>
+
+                <div class="symptom-item">
+                    Destruir cosas
+                </div>
+
+                <div class="symptom-item">
+                    Ladrar excesivamente
+                </div>
+
+                <div class="symptom-item">
+                    Comportamientos de ansiedad general
+                </div>
+            </div>
+
+            <p>Este problema requiere un trabajo más profundo. Necesitamos estructurar la rutina de otra forma, ajustar el manejo diario, y trabajar aspectos específicos de la relación entre tú y tu perro.</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <div class="course-offer">
+            <h2>La solución: Mi Perro Equilibrado</h2>
+
+            <p style="text-align: center; font-size: 1.2rem; margin: 2rem 0;">Para casos como este, tengo un entrenamiento completo que aborda todos estos temas en profundidad.</p>
+
+            <h3>En Mi Perro Equilibrado vas a aprender:</h3>
+
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <strong>🏠 Cómo construir una rutina sólida</strong>
+                    <p>Con tu perro, que le dé estructura y seguridad.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <strong>🎓 Cómo enseñar los comandos básicos</strong>
+                    <p>De forma efectiva.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <strong>💙 Cómo tratar la ansiedad por separación</strong>
+                    <p>Paso a paso.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <strong>🔧 Cómo resolver los problemas de comportamiento</strong>
+                    <p>Más comunes que enfrentan los dueños.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <strong>🧠 Cómo comprender mejor a tu perro</strong>
+                    <p>Y comunicarte con él de forma que realmente entienda.</p>
+                </div>
+            </div>
+
+            <p style="text-align: center; font-size: 1.1rem; margin: 2rem 0; font-weight: 500;">Es un programa mucho más completo que este entrenamiento básico. Está diseñado para perros que tienen desafíos de comportamiento que van más allá de simplemente aprender dónde hacer sus necesidades.</p>
+
+            <div class="price-box">
+                <div class="special-label">🎁 OFERTA ESPECIAL PARA MIS ALUMNOS</div>
+                <div class="regular-price">Precio regular: $127 USD</div>
+                <div class="special-price">PRECIO ESPECIAL</div>
+                <p style="font-size: 1.1rem; margin-top: 1rem;">Pero tú ya estás aquí. Ya hiciste la inversión en este curso. Ya confiaste en mi trabajo y en mi método. Y quiero recompensarte por eso.</p>
+                <p style="font-weight: 600; font-size: 1.2rem; color: var(--accent-color); margin-top: 1.5rem;">Para ti, que ya eres mi alumno, voy a dejar el acceso disponible por un precio especial.</p>
+            </div>
+
+            <a href="#" class="cta-button">🐕 ACCEDER A MI PERRO EQUILIBRADO</a>
+
+            <p style="text-align: center; font-size: 1rem; margin-top: 2rem; opacity: 0.9;">Si sientes que necesitas ir más profundo, si los problemas de tu perro van más allá de lo que cubrimos aquí, este es el siguiente paso.</p>
+        </div>
+    </div>
+
+    <footer>
+        <h3>Sobre el Autor</h3>
+        
+        <p><strong>Miguel Entrenador</strong></p>
+        <p>Entrenador canino especializado en comportamiento y bienestar de perros.</p>
+        
+        <div class="social">
+            <p>Sígueme en <a href="https://instagram.com/miguel.entrenadorcanino" target="_blank">@miguel.entrenadorcanino</a></p>
+        </div>
+
+        <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">© Todos los derechos reservados - Miguel Entrenador</p>
+    </footer>
+
+    <div class="back-to-top" id="backToTop">↑</div>
+
+    <script>
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
