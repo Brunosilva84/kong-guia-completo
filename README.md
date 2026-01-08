@@ -16,7 +16,8 @@ Guía completa sobre el uso del Kong, el juguete rellenable más famoso del mund
 
 ## 🚀 Deploy
 
-Página desplegada en Vercel: [Ver sitio en vivo](#)
+- **GitHub Repository:** https://github.com/Brunosilva84/kong-guia-completo
+- **Vercel (Produção):** https://pet-delta-eight.vercel.app
 
 ## 💻 Tecnologías
 
