@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método REC - Transición al Sanitario Canino | Miguel Entrenador</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #3498DB;
+            --secondary-color: #2ECC71;
+            --dark-color: #2C3E50;
+            --light-color: #ECF0F1;
+            --accent-color: #9B59B6;
+            --text-color: #34495E;
+            --success-color: #27AE60;
+            --warning-color: #E67E22;
+            --step-1: #3498DB;
+            --step-2: #9B59B6;
+            --step-3: #E67E22;
+            --step-4: #27AE60;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #16A085 0%, #27AE60 100%);
+            color: white;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+        }
+
+        header .author {
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            opacity: 0.9;
+        }
+
+        .chapter-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Sections */
+        section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        section h2 {
+            color: #16A085;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--success-color);
+        }
+
+        section h3 {
+            color: var(--dark-color);
+            font-size: 1.6rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        section p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--success-color);
+            margin: 2rem 0;
+        }
+
+        .info-box p {
+            font-size: 1.1rem;
+        }
+
+        /* Steps Timeline */
+        .steps-timeline {
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .step-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 6px solid;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .step-card.step-1 {
+            border-left-color: var(--step-1);
+        }
+
+        .step-card.step-2 {
+            border-left-color: var(--step-2);
+        }
+
+        .step-card.step-3 {
+            border-left-color: var(--step-3);
+        }
+
+        .step-card.step-4 {
+            border-left-color: var(--step-4);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-1 .step-number {
+            background: var(--step-1);
+        }
+
+        .step-2 .step-number {
+            background: var(--step-2);
+        }
+
+        .step-3 .step-number {
+            background: var(--step-3);
+        }
+
+        .step-4 .step-number {
+            background: var(--step-4);
+        }
+
+        .step-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+
+        .step-content {
+            padding-left: 76px;
+        }
+
+        .step-visual {
+            background: #F8F9FA;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            text-align: center;
+            font-size: 3rem;
+        }
+
+        /* Desensitization Box */
+        .desensitization-box {
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .desensitization-box h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .process-steps {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+        }
+
+        .process-step {
+            padding: 1rem;
+            border-left: 3px solid var(--primary-color);
+            margin: 1rem 0;
+            background: #F8F9FA;
+            border-radius: 5px;
+        }
+
+        .process-step strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: #FFF3E0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--warning-color);
+            margin: 1.5rem 0;
+        }
+
+        .warning-box strong {
+            color: var(--warning-color);
+        }
+
+        /* Highlight Box */
+        .highlight {
+            background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--success-color);
+            margin: 1.5rem 0;
+            font-weight: 500;
+        }
+
+        /* Smell Power Box */
+        .smell-power {
+            background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 3px solid var(--accent-color);
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .smell-power h3 {
+            color: var(--accent-color);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .smell-power .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .smell-tips {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+
+        /* Universal Application */
+        .universal-box {
+            background: linear-gradient(135deg, #FFF9E6 0%, #FFF3E0 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .universal-box h3 {
+            color: var(--warning-color);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .universal-items {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .universal-item {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--success-color);
+        }
+
+        .universal-item::before {
+            content: "✓ ";
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Final Note */
+        .final-note {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 3px solid var(--success-color);
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .final-note p {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 0;
+        }
+
+        /* Divider */
+        .divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #16A085, transparent);
+            margin: 3rem 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        footer h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        .social {
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+        }
+
+        .social a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .social a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #16A085;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--success-color);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 1.5rem 1rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+                margin-bottom: 0.3rem;
+            }
+
+            header .subtitle {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            header .author {
+                font-size: 0.9rem;
+                margin-top: 0.5rem;
+            }
+
+            .chapter-badge {
+                font-size: 0.9rem;
+                padding: 0.4rem 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .step-card {
+                padding: 1.5rem;
+            }
+
+            .step-content {
+                padding-left: 0;
+                margin-top: 1rem;
+            }
+
+            .step-visual {
+                font-size: 2rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🚽 Método REC 🚽</h1>
+        <div class="subtitle">Transición al Sanitario Canino o Bandeja con Rejilla</div>
+        <div class="chapter-badge">📖 Capítulo 8</div>
+        <div class="author">@miguel.entrenadorcanino</div>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>Cuándo hacer la transición</h2>
+            
+            <div class="info-box">
+                <p>Si tu perro ya aprendió a hacer sus necesidades en el <strong>tapete entrenador</strong> (también conocido como tapete higiénico o pañal para perros), el siguiente paso natural es hacer la transición a un sanitario canino con bandeja y rejilla.</p>
+            </div>
+
+            <p>Esta transición es más simple de lo que parece, pero requiere un proceso gradual para que tu perro no se confunda ni tenga resistencia al cambio.</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2>El proceso paso a paso</h2>
+
+            <p>La transición funciona en etapas. <strong>No intentes hacerla de un día para otro.</strong></p>
+
+            <div class="steps-timeline">
+                <div class="step-card step-1">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Introducir el sanitario junto al tapete</div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-visual">
+                            🚽 + 📄
+                        </div>
+                        <p>Coloca el tapete higiénico <strong>encima de la rejilla</strong> del sanitario, de preferencia con algo de olor de su pipí para que sirva como atractivo.</p>
+                        <p>Al mismo tiempo, coloca otro tapete <strong>al lado del sanitario</strong>, en el piso.</p>
+                        <div class="highlight">
+                            <p><strong>Con esta configuración, tu perro tiene dos opciones:</strong></p>
+                            <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                                <li>Hacer en el tapete que está arriba del sanitario</li>
+                                <li>Hacer en el tapete que está al lado</li>
+                            </ul>
+                            <p style="margin-top: 1rem;">Ambas son correctas por ahora. El objetivo es que empiece a explorar la opción de subir al sanitario.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-card step-2">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Eliminar el tapete del piso</div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-visual">
+                            🚽 📄
+                        </div>
+                        <p>Una vez que tu perro comienza a subir al sanitario y hacer sus necesidades ahí arriba de forma consistente, <strong>retiras el tapete que estaba al lado en el piso</strong>.</p>
+                        <p>Ahora solo tiene la opción de subir.</p>
+                    </div>
+                </div>
+
+                <div class="step-card step-3">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Mover el tapete debajo de la rejilla</div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-visual">
+                            🚽<br><small style="font-size: 1.5rem;">📄 (debajo)</small>
+                        </div>
+                        <p>Cuando ya está haciendo consistentemente arriba del sanitario, mueves el tapete higiénico para que quede <strong>debajo de la rejilla</strong>, en la bandeja.</p>
+                        <div class="info-box">
+                            <p><strong>💡 Esto es como está diseñado el sanitario para funcionar:</strong> El perro hace encima de la rejilla y los líquidos caen al tapete que está abajo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-card step-4">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Retirar el tapete completamente</div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-visual">
+                            🚽 ✨
+                        </div>
+                        <p>Finalmente, una vez que el hábito está consolidado, puedes <strong>retirar el tapete por completo</strong>.</p>
+                        <p>El sanitario funciona solo con la bandeja que recoge los líquidos y se limpia fácilmente.</p>
+                        <div class="highlight">
+                            <p><strong>🎉 ¡Transición completa!</strong> Tu perro ahora usa el sanitario de forma independiente.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2>Cómo desensibilizar al sanitario</h2>
+
+            <div class="desensitization-box">
+                <h3>⚠️ Algo importante que muchos dueños pasan por alto</h3>
+                
+                <p>El sanitario canino es algo nuevo para tu perro. Es una plataforma elevada con un escaloncito que necesita subir. Es una textura diferente bajo sus patas. Es un objeto que no conocía antes.</p>
+
+                <p><strong>Algunos perros lo aceptan sin problema. Otros pueden tener cierta resistencia o extrañeza.</strong></p>
+
+                <p style="margin-top: 1.5rem;">Si tu perro muestra desconfianza hacia el sanitario, necesitas desensibilizarlo antes de esperar que lo use para sus necesidades.</p>
+
+                <div class="process-steps">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">Proceso de desensibilización:</h4>
+
+                    <div class="process-step">
+                        <strong>Paso 1:</strong>
+                        <p>Toma un premio o un poco de su comida.</p>
+                    </div>
+
+                    <div class="process-step">
+                        <strong>Paso 2:</strong>
+                        <p>Haz que pase caminando por encima del sanitario. No le pidas que se quede ahí arriba, solo que pase de un lado al otro.</p>
+                    </div>
+
+                    <div class="process-step">
+                        <strong>Paso 3:</strong>
+                        <p>Dale el premio <strong>justo después de que termine de pasar</strong>, no mientras está arriba.</p>
+                    </div>
+
+                    <div class="process-step">
+                        <strong>Paso 4:</strong>
+                        <p>Repite este ejercicio varias veces hasta que tu perro pase por encima del sanitario sin ninguna duda ni resistencia.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <p><strong>⚠️ Detalle técnico importante:</strong> Dale el premio justo después de que termine de pasar, no mientras está arriba.</p>
+                <p style="margin-top: 0.5rem;">Si empiezas a dar premios cuando está parado sobre el sanitario, puede confundirse y pensar que lo que debe hacer es quedarse ahí, sentarse, o echarse.</p>
+                <p style="margin-top: 0.5rem; font-weight: 600;">Queremos que asocie el sanitario con "pasar por aquí y hacer mis necesidades", no con "quedarme quieto aquí arriba".</p>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <div class="smell-power">
+            <div class="icon">👃</div>
+            <h3>El poder del olor como atractivo</h3>
+
+            <p style="font-size: 1.2rem; font-weight: 500;">En todo este proceso, el olor juega un papel fundamental.</p>
+
+            <div class="smell-tips">
+                <p><strong>🔑 Regla de oro:</strong> Mantén siempre un poco de olor de su pipí en el tapete que está sobre o dentro del sanitario.</p>
+
+                <p style="margin-top: 1.5rem;"><strong>💡 Por qué funciona:</strong></p>
+                <p>Este olor funciona como un mensaje claro para tu perro que dice <strong>"aquí es donde se hace pipí"</strong>.</p>
+
+                <p style="margin-top: 1.5rem;"><strong>✅ Cómo lograrlo:</strong></p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>No cambies el tapete inmediatamente después de que hace</li>
+                    <li>Pasa un poco del tapete usado al tapete nuevo antes de colocarlo</li>
+                </ul>
+
+                <div class="highlight" style="margin-top: 1.5rem;">
+                    <p><strong>El olor es el atractivo natural más poderoso que tienes. Úsalo a tu favor durante toda la transición.</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="universal-box">
+            <h3>📋 Este mismo proceso aplica para otros sistemas</h3>
+
+            <p>Todo lo que te expliqué aquí funciona igual si estás haciendo la transición a otros sistemas similares, como:</p>
+
+            <div class="universal-items">
+                <div class="universal-item">
+                    Pasto sintético para perros (también conocido como "grass pad" o tapete de pasto)
+                </div>
+
+                <div class="universal-item">
+                    Cualquier otra plataforma elevada
+                </div>
+
+                <div class="universal-item">
+                    Sistemas de entrenamiento similares
+                </div>
+            </div>
+
+            <div class="info-box" style="margin-top: 2rem;">
+                <p><strong>El principio es el mismo:</strong></p>
+                <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                    <li>Introducir gradualmente</li>
+                    <li>Desensibilizar si hay resistencia</li>
+                    <li>Usar el olor como atractivo</li>
+                    <li>Premiar cuando hace correctamente</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="final-note">
+            <p>La paciencia y la consistencia son tus mejores aliados en este proceso. ✨</p>
+        </div>
+    </div>
+
+    <footer>
+        <h3>Sobre el Autor</h3>
+        
+        <p><strong>Miguel Entrenador</strong></p>
+        <p>Entrenador canino especializado en comportamiento y bienestar de perros.</p>
+        
+        <div class="social">
+            <p>Sígueme en <a href="https://instagram.com/miguel.entrenadorcanino" target="_blank">@miguel.entrenadorcanino</a></p>
+        </div>
+
+        <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">© Todos los derechos reservados - Miguel Entrenador</p>
+    </footer>
+
+    <div class="back-to-top" id="backToTop">↑</div>
+
+    <script>
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
