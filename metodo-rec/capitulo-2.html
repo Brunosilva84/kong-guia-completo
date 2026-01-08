@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método REC - La Naturaleza de los Perros | Miguel Entrenador</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #3498DB;
+            --secondary-color: #2ECC71;
+            --dark-color: #2C3E50;
+            --light-color: #ECF0F1;
+            --accent-color: #9B59B6;
+            --text-color: #34495E;
+            --success-color: #27AE60;
+            --warning-color: #E67E22;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+        }
+
+        header .author {
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            opacity: 0.9;
+        }
+
+        .chapter-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Sections */
+        section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        section h2 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        section h3 {
+            color: var(--dark-color);
+            font-size: 1.6rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        section h4 {
+            color: var(--text-color);
+            font-size: 1.3rem;
+            margin: 1.5rem 0 0.8rem 0;
+        }
+
+        section p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        section ul, section ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        section li {
+            margin: 0.5rem 0;
+            line-height: 1.6;
+        }
+
+        /* Intro Box */
+        .intro-box {
+            background: linear-gradient(135deg, #E3F2FD 0%, #F1F8E9 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-color);
+            margin: 2rem 0;
+        }
+
+        .intro-box p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Feature Cards */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            border-top: 4px solid var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(52,152,219,0.2);
+        }
+
+        .feature-card h4 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            line-height: 1.7;
+        }
+
+        /* Highlight Box */
+        .highlight {
+            background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--success-color);
+            margin: 1.5rem 0;
+            font-weight: 500;
+        }
+
+        /* Warning Box */
+        .warning {
+            background: #FFF3E0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--warning-color);
+            margin: 1.5rem 0;
+        }
+
+        .warning strong {
+            color: var(--warning-color);
+        }
+
+        /* Info Box */
+        .info-box {
+            background: #E3F2FD;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary-color);
+            margin: 1.5rem 0;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background: #F5F5F5;
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--accent-color);
+            font-style: italic;
+            font-size: 1.1rem;
+            margin: 2rem 0;
+        }
+
+        /* Activities Box */
+        .activities {
+            background: linear-gradient(135deg, #FFF9E6 0%, #FFF3E0 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .activities h4 {
+            color: var(--warning-color);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .activity-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 3px solid var(--warning-color);
+        }
+
+        .activity-item strong {
+            color: var(--dark-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Navigation */
+        .chapter-nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin: 3rem 0;
+        }
+
+        .nav-button {
+            flex: 1;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52,152,219,0.3);
+        }
+
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(52,152,219,0.4);
+        }
+
+        .nav-button.prev::before {
+            content: "← ";
+        }
+
+        .nav-button.next::after {
+            content: " →";
+        }
+
+        /* Divider */
+        .divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            margin: 3rem 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        footer h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        .social {
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+        }
+
+        .social a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .social a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 1.5rem 1rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+                margin-bottom: 0.3rem;
+            }
+
+            header .subtitle {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            header .author {
+                font-size: 0.9rem;
+                margin-top: 0.5rem;
+            }
+
+            .chapter-badge {
+                font-size: 0.9rem;
+                padding: 0.4rem 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .chapter-nav {
+                flex-direction: column;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🐺 Método REC 🐺</h1>
+        <div class="subtitle">La Naturaleza de los Perros</div>
+        <div class="chapter-badge">📖 Capítulo 2</div>
+        <div class="author">@miguel.entrenadorcanino</div>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>Por qué necesitas entender de dónde vienen</h2>
+            
+            <p>Antes de intentar educar a tu perro, necesitas entender quién es realmente. No me refiero a su raza o su personalidad individual, sino a algo más profundo: su naturaleza como especie.</p>
+
+            <div class="intro-box">
+                <p><strong>Cuando entiendes la naturaleza del perro, empiezas a mirarlo de forma diferente.</strong> Dejas de juzgar sus comportamientos como "malos" o "problemáticos" y comienzas a ver lo que realmente son: expresiones de necesidades que no están siendo satisfechas.</p>
+            </div>
+
+            <p>La mayoría de los problemas de comportamiento que veo en mi trabajo no vienen de perros "difíciles". Vienen de dueños que, sin saberlo, están ignorando las necesidades básicas de la especie. Y no es su culpa. Simplemente nadie les explicó esto antes.</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2>Descendientes de los lobos</h2>
+
+            <p>Los perros descienden de los lobos. Esto no es solo un dato curioso de biología, es la clave para entender todo su comportamiento.</p>
+
+            <div class="highlight">
+                <p>¿Qué significa esto en la práctica?</p>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <h4>🍖 Son carnívoros y predadores</h4>
+                    <p>Tu perro viene de una línea de animales que necesitaban <strong>cazar para sobrevivir</strong>. Cada día era una búsqueda activa de alimento. Nada les llegaba gratis.</p>
+                    <p>Ahora mira la vida del perro promedio hoy: tiene un plato de comida siempre disponible, no necesita hacer absolutamente nada para comer. Solo existe y la comida aparece.</p>
+                    <p><strong>¿El resultado?</strong> Energía acumulada sin propósito. Instintos sin canalizar. Y eventualmente, lo que llamamos "problemas de comportamiento".</p>
+                </div>
+
+                <div class="feature-card">
+                    <h4>🏠 Son animales de madriguera</h4>
+                    <p>En la naturaleza, los lobos y los perros salvajes viven en madrigueras. Espacios cerrados, protegidos, que les dan sensación de seguridad.</p>
+                    <p>Por eso muchos perros buscan espacios pequeños para descansar: debajo de la mesa, en una esquina, dentro de una caja. No es que sean "raros", están siguiendo un instinto de miles de años.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h4>👥 Son animales gregarios</h4>
+                    <p>Los perros son animales de grupo. En la naturaleza, viven en manadas con una estructura clara. Siempre hay un líder que toma las decisiones importantes, que actúa primero ante situaciones nuevas, que es respetado por todos los demás.</p>
+                    <p>Tu perro entiende perfectamente esta estructura jerárquica. Necesita saber cuál es su lugar en el grupo familiar.</p>
+                    <p><strong>Cuando esa estructura no está clara, aparece la ansiedad, la inseguridad y los comportamientos problemáticos.</strong></p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <p><strong>💡 Recuerda:</strong> La comida es la principal moneda de intercambio con tu perro. No es soborno, es biología. Ellos están programados para buscar el recurso que garantiza su supervivencia. Cuando usamos la comida para enseñar, estamos hablando su idioma más básico.</p>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2>La necesidad de migrar</h2>
+
+            <p>Aquí hay algo que muchos dueños no entienden: los perros son <strong>animales de migración</strong>. En la naturaleza, se mueven constantemente. Salen de un lugar, van a otro, exploran territorios, buscan recursos.</p>
+
+            <div class="highlight">
+                <p>Esto está grabado en su ADN. No es opcional.</p>
+            </div>
+
+            <p>Por eso <strong>el paseo es absolutamente fundamental</strong> para todo perro, sin excepción. No es un lujo ni un extra. Es una necesidad biológica tan básica como comer o dormir.</p>
+
+            <h3>"Pero mi perro no le gusta pasear"</h3>
+
+            <p>Si tu perro no quiere salir a pasear, eso no significa que no lo necesite. Significa que hay un problema que resolver.</p>
+
+            <p>Algo en su historia de vida, algún trauma, alguna experiencia negativa, hizo que asociara el paseo con algo desagradable. El instinto natural es querer salir. Si no quiere, hay que investigar por qué y solucionarlo.</p>
+
+            <h3>El paseo educativo</h3>
+
+            <div class="info-box">
+                <p>El paseo no es solo "sacar al perro". Es una oportunidad de construir la relación jerárquica con él.</p>
+            </div>
+
+            <p>Cuando haces un paseo estructurado, donde tu perro camina a tu lado en lugar de arrastrarte, donde tú decides la dirección y el ritmo, donde no permites que huela absolutamente todo sin control, estás comunicando algo importante: <strong>"Yo lidero, tú me sigues"</strong>.</p>
+
+            <p>Esto no es ser autoritario ni cruel. Es darle a tu perro la estructura que necesita para sentirse seguro.</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2>El mito de la socialización obligatoria</h2>
+
+            <p>Necesito desmentir algo que se ha popularizado mucho: la idea de que los perros <strong>necesitan</strong> interactuar con otros perros constantemente.</p>
+
+            <p>Guarderías caninas, parques de perros, "playdates" obligatorios... Como si fuera una necesidad vital.</p>
+
+            <div class="warning">
+                <p><strong>La realidad es que esto no existe en la naturaleza.</strong> Los lobos no organizan reuniones sociales con otras manadas. Los perros salvajes no buscan hacer amigos nuevos cada día.</p>
+            </div>
+
+            <p>¿Puede tu perro ir a una guardería? Sí. ¿Puede ser sociable y llevarse bien con otros perros? Claro. Pero no es una necesidad de la especie. No te sientas culpable si tu perro no tiene "amigos perrunos".</p>
+
+            <div class="highlight">
+                <p>Lo que sí necesita es una relación sólida contigo. Eso es lo que realmente importa.</p>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2>Lo que los perros realmente hacen en la naturaleza</h2>
+
+            <p>Si observas lobos o perros salvajes, verás que su día se divide básicamente en tres actividades:</p>
+
+            <div class="activities">
+                <h4>Las 3 actividades naturales del perro:</h4>
+
+                <div class="activity-item">
+                    <strong>🎯 Cazar/Buscar alimento</strong>
+                    <p>Actividad física con propósito, usando el olfato, la vista, el cuerpo entero.</p>
+                </div>
+
+                <div class="activity-item">
+                    <strong>😴 Descansar</strong>
+                    <p>Recuperar energías. Quedarse quietos, muchas veces en su madriguera.</p>
+                </div>
+
+                <div class="activity-item">
+                    <strong>🦴 Roer cosas</strong>
+                    <p>Pedazos de hueso, ramas, lo que encuentren. Es una actividad que los calma y los mantiene ocupados mentalmente.</p>
+                </div>
+            </div>
+
+            <p><strong>Eso es todo. No hacen mucho más.</strong></p>
+
+            <div class="quote-box">
+                <p>Ahora piensa en la vida de tu perro. ¿Tiene oportunidad de "cazar" su comida de alguna forma? ¿Tiene un lugar tranquilo para descansar? ¿Tiene cosas apropiadas para roer?</p>
+                <p><strong>Si le proporcionas estas tres cosas de forma adecuada, la mayoría de los problemas de comportamiento simplemente no aparecen.</strong></p>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2>Conclusión: Volver a lo básico</h2>
+
+            <p>Entender la naturaleza del perro no es un ejercicio teórico. Es la base de todo.</p>
+
+            <p>Cuando dejas de ver a tu perro como un "bebé peludo" o como un humano pequeño, y empiezas a verlo como lo que realmente es —un descendiente de predadores con necesidades específicas— todo cambia.</p>
+
+            <div class="highlight">
+                <p><strong>Sus comportamientos dejan de ser misterios. Sus necesidades se vuelven claras. Y tu rol como líder de la manada familiar se define naturalmente.</strong></p>
+            </div>
+
+            <p>En los próximos capítulos vamos a ver cómo aplicar todo esto en la práctica diaria. Pero primero, necesitaba que entendieras esto: <strong>tu perro no está roto. Solo necesita que respetes su naturaleza.</strong></p>
+        </section>
+
+        <div class="chapter-nav">
+            <a href="index.html" class="nav-button prev">Capítulo 1: Cómo Funciona la Mente del Perro</a>
+            <a href="#" class="nav-button next" style="opacity: 0.5; pointer-events: none;">Capítulo 3: Próximamente</a>
+        </div>
+    </div>
+
+    <footer>
+        <h3>Sobre el Autor</h3>
+        
+        <p><strong>Miguel Entrenador</strong></p>
+        <p>Entrenador canino especializado en comportamiento y bienestar de perros.</p>
+        
+        <div class="social">
+            <p>Sígueme en <a href="https://instagram.com/miguel.entrenadorcanino" target="_blank">@miguel.entrenadorcanino</a></p>
+        </div>
+
+        <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">© Todos los derechos reservados - Miguel Entrenador</p>
+    </footer>
+
+    <div class="back-to-top" id="backToTop">↑</div>
+
+    <script>
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
