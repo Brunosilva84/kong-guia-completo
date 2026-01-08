@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método REC - Necesidades en el Lugar Correcto: El Agua | Miguel Entrenador</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #3498DB;
+            --secondary-color: #2ECC71;
+            --dark-color: #2C3E50;
+            --light-color: #ECF0F1;
+            --accent-color: #9B59B6;
+            --text-color: #34495E;
+            --success-color: #27AE60;
+            --warning-color: #E67E22;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #00BCD4 0%, #4DD0E1 100%);
+            color: white;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+        }
+
+        header .author {
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            opacity: 0.9;
+        }
+
+        .chapter-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Sections */
+        section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        section h2 {
+            color: #00BCD4;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #4DD0E1;
+        }
+
+        section h3 {
+            color: var(--dark-color);
+            font-size: 1.6rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        section h4 {
+            color: var(--text-color);
+            font-size: 1.3rem;
+            margin: 1.5rem 0 0.8rem 0;
+        }
+
+        section p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* Intro Box */
+        .intro-box {
+            background: linear-gradient(135deg, #E0F7FA 0%, #B2EBF2 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #00BCD4;
+            margin: 2rem 0;
+        }
+
+        .intro-box p {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .intro-box .answer {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #00838F;
+            margin-top: 1rem;
+        }
+
+        /* Big Answer Box */
+        .big-answer {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 4px solid var(--success-color);
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .big-answer h3 {
+            color: var(--success-color);
+            font-size: 2rem;
+            margin: 0 0 1rem 0;
+        }
+
+        .big-answer p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 0;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: #E3F2FD;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary-color);
+            margin: 1.5rem 0;
+        }
+
+        .info-box strong {
+            color: var(--primary-color);
+        }
+
+        /* Warning Box */
+        .warning {
+            background: #FFF3E0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--warning-color);
+            margin: 1.5rem 0;
+        }
+
+        .warning strong {
+            color: var(--warning-color);
+        }
+
+        /* Exception Box */
+        .exception-box {
+            background: #FFF9C4;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #FBC02D;
+            margin: 2rem 0;
+        }
+
+        .exception-box h4 {
+            color: #F57F17;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        /* Highlight Box */
+        .highlight {
+            background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--success-color);
+            margin: 1.5rem 0;
+            font-weight: 500;
+        }
+
+        /* Comparison Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: linear-gradient(135deg, #00BCD4 0%, #4DD0E1 100%);
+            color: white;
+            padding: 1.2rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        td {
+            padding: 1.2rem;
+            border-bottom: 1px solid #eee;
+            font-size: 1.05rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: #F5F5F5;
+        }
+
+        td:first-child {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .yes-badge {
+            background: var(--success-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .no-badge {
+            background: #E74C3C;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        /* Key Point Box */
+        .key-point {
+            background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--accent-color);
+            margin: 2rem 0;
+        }
+
+        .key-point strong {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        /* Divider */
+        .divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00BCD4, transparent);
+            margin: 3rem 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        footer h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        .social {
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+        }
+
+        .social a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .social a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #00BCD4;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #4DD0E1;
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 1.5rem 1rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+                margin-bottom: 0.3rem;
+            }
+
+            header .subtitle {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            header .author {
+                font-size: 0.9rem;
+                margin-top: 0.5rem;
+            }
+
+            .chapter-badge {
+                font-size: 0.9rem;
+                padding: 0.4rem 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.8rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>💧 Método REC 💧</h1>
+        <div class="subtitle">Necesidades en el Lugar Correcto: El Agua</div>
+        <div class="chapter-badge">📖 Capítulo 4</div>
+        <div class="author">@miguel.entrenadorcanino</div>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>Una aclaración importante</h2>
+            
+            <p>En el capítulo anterior hablamos de regular la alimentación para tener previsibilidad sobre cuándo tu perro va a hacer sus necesidades. Esto puede generar una duda lógica: <strong>¿debo hacer lo mismo con el agua?</strong></p>
+
+            <div class="big-answer">
+                <h3>La respuesta es NO</h3>
+                <p>El agua es diferente.</p>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2>El agua siempre disponible</h2>
+
+            <div class="info-box">
+                <p><strong>💧 Regla fundamental:</strong> A diferencia de la comida, el agua debe estar siempre a disposición de tu perro. No hay necesidad de regularla ni de establecer horarios para que beba.</p>
+            </div>
+
+            <p>Hay una razón práctica para esto. La mayoría de los perros se alimentan principalmente de croquetas (alimento seco), que contienen muy poca humedad. Esto hace que naturalmente necesiten tomar más agua a lo largo del día para mantenerse hidratados.</p>
+
+            <div class="warning">
+                <p><strong>⚠️ Importante:</strong> Privarlos de agua libre podría afectar su salud. Así que mantén el plato de agua siempre lleno y accesible.</p>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2>La única excepción: accidentes nocturnos</h2>
+
+            <div class="exception-box">
+                <h4>🌙 Estrategia opcional para la noche</h4>
+                <p>Si tu perro tiene el problema específico de hacer pipí durante la noche y quieres reducir esa probabilidad, puedes retirar el agua unas horas antes de dormir y volver a ponerla por la mañana.</p>
+            </div>
+
+            <p>Es una estrategia válida, pero honestamente, no la considero indispensable en la mayoría de los casos.</p>
+
+            <p><strong>¿Por qué?</strong> Porque la solución real está en el control del ambiente, no en restringir el agua. Cuando tienes el espacio correctamente organizado y limitas el acceso de tu perro a las áreas donde no quieres que haga sus necesidades durante la noche, el problema se resuelve de forma más efectiva.</p>
+
+            <div class="key-point">
+                <p><strong>🎯 Principio clave:</strong> El control del ambiente es siempre más poderoso que cualquier restricción. Cuando controlas el espacio y diriges a tu perro hacia donde quieres que esté, todo se vuelve más simple.</p>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+            <h2>Resumen rápido</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Recurso</th>
+                        <th>¿Regular?</th>
+                        <th>¿Por qué?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>🍽️ <strong>Comida</strong></td>
+                        <td><span class="yes-badge">Sí</span></td>
+                        <td>Para tener previsibilidad de las necesidades</td>
+                    </tr>
+                    <tr>
+                        <td>💧 <strong>Agua</strong></td>
+                        <td><span class="no-badge">No</span></td>
+                        <td>Debe estar siempre disponible por salud</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight">
+                <p><strong>📝 Nota final:</strong> La única modificación opcional con el agua es retirarla en la noche si hay accidentes nocturnos persistentes, pero incluso eso es secundario comparado con tener un buen control del ambiente.</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <h3>Sobre el Autor</h3>
+        
+        <p><strong>Miguel Entrenador</strong></p>
+        <p>Entrenador canino especializado en comportamiento y bienestar de perros.</p>
+        
+        <div class="social">
+            <p>Sígueme en <a href="https://instagram.com/miguel.entrenadorcanino" target="_blank">@miguel.entrenadorcanino</a></p>
+        </div>
+
+        <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">© Todos los derechos reservados - Miguel Entrenador</p>
+    </footer>
+
+    <div class="back-to-top" id="backToTop">↑</div>
+
+    <script>
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
